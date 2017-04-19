@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  price: 1.5
-  category: MyString
-  description: MyText
+aloe:
+  name: Aloe vera
+  price: 5.50
+  category: succulent
+  description: Aloe vera is a plant species of the genus Aloe. It grows wild in tropical climates around the world and is cultivated for agricultural and medicinal uses. Aloe is also used for decorative purposes and grows successfully indoors as a potted plant.
   inventory: 1
-  photo_url: MyString
+  photo_url: 
 
-two:
-  name: MyString
-  price: 1.5
-  category: MyString
+century:
+  name: Centuryplant
+  price: 8.20
+  category: succulent
   description: MyText
   inventory: 1
   photo_url: MyString
