@@ -3,8 +3,20 @@ require 'test_helper'
 describe Merchant do
 
   describe "validations" do
+    it "Can be created with all attributes" do
+      merchant = Merchant.create!(username: 'jamie', email: 'jamie@domainname.org')
+      merchant.valid?.must_equal true
+    end
+
     it "requires a username" do
-      Merchant.new.valid?.must_equal false
+      merchant = Merchant.new
+      merchant.valid?.must_equal false
+      merchant.errors.messages.must_include :username
+    end
+
+    it "requires presence of username" do
+      merchant = Merchant.new(username: " ")
+      merchant.valid?.must_equal false
       merchant.errors.messages.must_include :username
     end
 
@@ -15,7 +27,15 @@ describe Merchant do
     end
 
     it "requires a email" do #success case
+      merchant = Merchant.new
+      merchant.valid?.must_equal false
+      merchant.errors.messages.must_include :email
+    end
 
+    it "requires presence of an email" do
+      merchant = Merchant.new(email: " ")
+      merchant.valid?.must_equal false
+      merchant.errors.messages.must_include :email
     end
 
     it "requires a unique email" do #failure case
@@ -27,6 +47,11 @@ describe Merchant do
 
   describe "relations"do
     it "has a list of products" do
+      sally = merchants(:sally)
+      sally.must_respond_to :products
+      sally.products.each do |product|
+        product.must_be_kind_of Product
+      end
     end
   end
 end
