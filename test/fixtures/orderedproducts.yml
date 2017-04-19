@@ -2,10 +2,10 @@
 
 one:
   quantity: 3
-  order: 12
-  product: 54
+  order: pending
+  product: aloe
 
 two:
   quantity: 1
-  order: 23
-  product_id: 43
+  order: paid
+  product: century
