@@ -6,7 +6,8 @@ aloe:
   category: succulent
   description: Aloe vera is a plant species of the genus Aloe. It grows wild in tropical climates around the world and is cultivated for agricultural and medicinal uses. Aloe is also used for decorative purposes and grows successfully indoors as a potted plant.
   inventory: 1
-  photo_url: 
+  photo_url:
+  merchant: alice
 
 century:
   name: Centuryplant
@@ -15,3 +16,4 @@ century:
   description: MyText
   inventory: 1
   photo_url: MyString
+  merchant: sally

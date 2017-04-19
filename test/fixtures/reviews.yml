@@ -9,3 +9,8 @@ rating2:
   rating: 2
   comment: MyText
   product: century
+
+review3:
+  rating: 5
+  comment: Best plant ever!
+  product: aloe
