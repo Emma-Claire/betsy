@@ -10,9 +10,3 @@ shipped:
 
 cancelled:
   status: cancelled
-
-fake:
-  status: fake
-
-no_status:
-  status:
