@@ -2,36 +2,52 @@ require 'test_helper'
 
 class OrderedproductTest < ActiveSupport::TestCase
   describe "validations" do
+    it "can be created with all attributes" do
+      Orderedproduct.create!(
+      quantity: 12,
+      order: orders(:paid),
+      product: products(:aloe)
+      )
+    end
 
     it "requires a quantity" do
       orderedproduct = Orderedproduct.new
-      result = orderedproduct.valid?
-      result.must_equal false
-
+      orderedproduct.valid?.must_equal false
       orderedproduct.errors.messages.must_include :quantity
     end
 
-    it "must be an integer" do
-
+    it "requires the quantity to be an integer" do
+      orderedproduct = Orderedproduct.new(quantity: "ab")
+      orderedproduct.valid?.must_equal false
+      orderedproduct.errors.messages.must_include :quantity
     end
 
     it "must be greater than 0" do
+      orderedproduct = Orderedproduct.new(quantity: 0)
+      orderedproduct.valid?.must_equal false
+      orderedproduct.errors.messages.must_include :quantity
     end
   end
 
   describe "relations" do
-    it "can set the order through 'order_id'" do
-      op = Orderedproduct.new(quantity: 3)
-
-      op.order = Order.find_by(order_id: 12)
-      op.order_id.must_equal orders(:one).id
+    let (:op) {Orderedproduct.new(quantity: 3)}
+    it "can set the order through 'order'" do
+      op.order = orders(:pending)
+      op.order_id.must_equal orders(:pending).id
     end
 
-    it "can set the product through 'product_id'" do
-      op = Orderedproduct.new(quantity: 1)
+    it "can set the order through 'order_id'" do
+      op.order_id = orders(:pending).id
+      op.order.must_equal orders(:pending)
+    end
 
-      op.product = Product.find_by(product_id: 43)
-      op.product_id.must_equal products(:two).id
+    it "can set the product through 'product'" do
+      op.product = products(:century)
+      op.product_id.must_equal products(:century).id
+    end
+    it "can set the product through 'product_id'" do
+      op.product_id = products(:aloe).id
+      op.product.must_equal products(:aloe)
     end
   end
 end
