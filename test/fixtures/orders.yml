@@ -1,7 +1,18 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  status: MyString
+pending:
+  status: pending
 
-two:
-  status: MyString
+paid:
+  status: paid
+
+shipped:
+  status: shipped
+
+cancelled:
+  status: cancelled
+
+fake:
+  status: fake
+
+no_status:
+  status:
