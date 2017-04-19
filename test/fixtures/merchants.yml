@@ -4,10 +4,6 @@ alice:
   username: alice
   email: alice@domainname.org
 
-alice_dup:
-  username: alice
-  email: alice@domainname.org
-
 sally:
   username: sally
   email: sally@domainname.org
