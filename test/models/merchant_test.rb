@@ -3,6 +3,10 @@ require 'test_helper'
 describe Merchant do
 
   describe "validations" do
+    it "Can be created with all attributes" do
+      Merchant.create!(username: 'jamie', email: 'jamie@domainname.org')
+    end
+
     it "requires a username" do
       merchant = Merchant.new
       merchant.valid?.must_equal false
