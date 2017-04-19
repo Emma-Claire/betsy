@@ -4,11 +4,18 @@ describe Merchant do
 
   describe "validations" do
     it "Can be created with all attributes" do
-      Merchant.create!(username: 'jamie', email: 'jamie@domainname.org')
+      merchant = Merchant.create!(username: 'jamie', email: 'jamie@domainname.org')
+      merchant.valid?.must_equal true
     end
 
     it "requires a username" do
       merchant = Merchant.new
+      merchant.valid?.must_equal false
+      merchant.errors.messages.must_include :username
+    end
+
+    it "requires presence of username" do
+      merchant = Merchant.new(username: " ")
       merchant.valid?.must_equal false
       merchant.errors.messages.must_include :username
     end
@@ -21,6 +28,12 @@ describe Merchant do
 
     it "requires a email" do #success case
       merchant = Merchant.new
+      merchant.valid?.must_equal false
+      merchant.errors.messages.must_include :email
+    end
+
+    it "requires presence of an email" do
+      merchant = Merchant.new(email: " ")
       merchant.valid?.must_equal false
       merchant.errors.messages.must_include :email
     end
