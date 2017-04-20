@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'products(/:category)', to: 'products#index', as: 'products'
+  category_constraints = { category: /(Aquamarine)|(Green)|(Maroon)/}
+  get 'products(/:category)', to: 'products#index', as: 'products', constraints: category_constraints
   get 'products/:id', to: 'products#show', as: 'product'
 
   get 'products/new', to: 'products#new', as: 'new_product'
