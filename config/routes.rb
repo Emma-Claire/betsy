@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'products(/:category)', to: 'products#index', as: 'products', constraints: category_constraints
   get 'products/:id', to: 'products#show', as: 'product'
   get 'products/new', to: 'products#new', as: 'new_product'
-  
+
   post 'products', to: 'products#create'
 
   get 'products/:id/edit', to: 'products#edit', as: 'edit_product'
@@ -17,4 +17,10 @@ Rails.application.routes.draw do
   post 'products/:id/edit', to: 'products#edit'
   patch 'products/:id', to: 'products#update'
   resources :reviews, only: [:new, :create]
+
+
+  # orderedproduct routes
+  # get 'orderedproducts', to: 'orderedproducts#index', as: 'orderedproducts'
+
+  post 'orderedproducts/:product_id', to: 'orderedproducts#create', as: 'add_OP'
 end
