@@ -1,0 +1,2 @@
+class OrderedproductsController < ApplicationController
+end
