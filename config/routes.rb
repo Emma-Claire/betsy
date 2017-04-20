@@ -8,4 +8,5 @@ Rails.application.routes.draw do
 
   post 'products/:id/edit', to: 'products#edit'
   patch 'products/:id', to: 'products#update'
+  resources :reviews, only: [:new, :create]
 end
