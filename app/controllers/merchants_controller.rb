@@ -8,7 +8,7 @@ class MerchantsController < ApplicationController
     @merchant = Merchant.new(merchant_params)
     if @merchant.save
       flash[:status] = :success
-      flash[:result_text] = "Successfully created Merchant #{@merchant.unsername}"
+      flash[:result_text] = "Successfully created Merchant #{@merchant.username}"
       redirect_to merchants_path
     else
       flash[:status] = :failure
@@ -25,5 +25,11 @@ class MerchantsController < ApplicationController
     end
     # render :status => 404 unless @merchant
     # render_404 unless @merchant
+  end
+
+  private
+
+  def merchant_params
+    return params.require(:merchant).permit(:username, :email)
   end
 end
