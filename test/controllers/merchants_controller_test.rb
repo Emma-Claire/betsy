@@ -8,9 +8,40 @@ describe MerchantsController do
     end
   end
 
-  # describe "create" do
-  #
-  # end
+  describe "create" do
+    it "creates a new merchant" do
+      start_count = Merchant.count
+
+      merchant_data = {
+        merchant: {
+            username: "jamie",
+            email: "jamie@domainname.org"
+        }
+      }
+      post merchants_path, params: merchant_data
+      must_redirect_to merchants_path
+      end_count = Merchant.count
+      end_count.must_equal start_count + 1
+
+      merchant = Merchant.last
+      merchant.username.must_equal merchant_data[:merchant][:username]
+    end
+
+    it "responds with bad_request for NG data" do
+      start_count = Merchant.count
+
+      merchant_data = {
+        merchant: {
+          foo: ""
+        }
+      }
+      post merchants_path, params: merchant_data
+      must_respond_with :bad_request
+
+      end_count = Merchant.count
+      end_count.must_equal start_count
+    end
+  end
 
   describe "show" do
     it "succeeds for and existing merchant" do
@@ -26,7 +57,3 @@ describe MerchantsController do
     end
   end
 end
-
-# If your controller action reads form data and creates a model object, you need at least 2 cases:
-# The data was valid
-# The data was bad and validations failed

@@ -1,10 +1,21 @@
 class MerchantsController < ApplicationController
-  # def index
-  #   @merchants = Merchant.all
-  # end
 
   def new
     @merchant = Merchant.new
+  end
+
+  def create
+    @merchant = Merchant.new(merchant_params)
+    if @merchant.save
+      flash[:status] = :success
+      flash[:result_text] = "Successfully created Merchant #{@merchant.unsername}"
+      redirect_to merchants_path
+    else
+      flash[:status] = :failure
+      flash[:result_text] = "Could not create Merchant #{@merchant.username}"
+      flash[:messages] = @merchant.errors.messages
+      render :new, status: :bad_request
+    end
   end
 
   def show
