@@ -1,0 +1,37 @@
+<% if @product.errors.messages.length > 0 %>
+<h2> Something wrong! </h2>
+<ul>
+  <% @product.errors.messages.each do |field, problem_list| %>
+  <% problem_list.each do |problem| %>
+  <li>
+    <%= field %>:
+    <%= problem %>
+  </li>
+    <% end %>
+  <% end %>
+</ul>
+<% end %>
+
+<section class= 'form'>
+<%= form_for @product do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :price %>
+  <%= f.text_field :price %>
+
+  <%= f.label :category %>
+  <%= f.text_field :category %>
+
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+
+  <%= f.label :inventory %>
+  <%= f.text_field :inventory %>
+
+  <%= f.label :photo_url %>
+  <%= f.text_field :photo_url %>
+
+  <%= f.submit %>
+<% end %>
+</section>
