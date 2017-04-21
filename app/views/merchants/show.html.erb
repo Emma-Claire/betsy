@@ -1,0 +1,7 @@
+<h1> <%= @merchant.username %>'s Plantsy Shop</h1>
+
+<% @merchant.products.each do |product| %>
+  <ul>
+    <li><%= product.name %></li>
+  </ul>
+<% end %>
