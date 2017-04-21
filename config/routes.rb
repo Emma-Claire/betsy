@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   patch 'products/:id', to: 'products#update'
   resources :reviews, only: [:new, :create]
 
-  get 'orders/:id/edit', to:'orders#edit', as: 'edit_animal'
-  patch 'animals/:id', to: 'animals#update'
+  get 'orders/:id/edit', to:'orders#edit', as: 'edit_order'
+  patch 'orders/:id', to: 'orders#update'
 
   # orderedproduct routes
   # get 'orderedproducts', to: 'orderedproducts#index', as: 'orderedproducts'
