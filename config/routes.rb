@@ -16,7 +16,9 @@ Rails.application.routes.draw do
 
   post 'products/:id/edit', to: 'products#edit'
   patch 'products/:id', to: 'products#update'
-  resources :reviews, only: [:new, :create]
+
+  resources :reviews, only: [:new, :create, :show]
+  # post 'reviews', to: 'reviews#create', as: 'root'
 
   get 'orders/:id/edit', to:'orders#edit', as: 'edit_order'
   patch 'orders/:id', to: 'orders#update'
