@@ -10,6 +10,15 @@ class OrderedproductsController < ApplicationController
     end
   end
 
+  def edit
+    find_order
+    @op = Orderedproduct.find_by(orderedproduct_id: params[:orderedproduct_id], order_id: @order.id)
+
+    if @op.nil?
+      head :not_found
+    end
+  end
+
   private
 
   def start_new_order
