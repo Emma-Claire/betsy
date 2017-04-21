@@ -58,7 +58,7 @@ class ProductTest < ActiveSupport::TestCase
    end
 
    it "requires a unique name" do
-     
+
    end
 
    it "requires a price" do

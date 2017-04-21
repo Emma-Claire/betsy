@@ -1,7 +1,7 @@
-<h1><%= @merchant.username %> </h1>
+<h1> <%= @merchant.username %>'s Plantsy Shop</h1>
 
 <% @merchant.products.each do |product| %>
-<ul>
-  <li> <%= product.name %></li>
-</ul>
+  <ul>
+    <li><%= product.name %></li>
+  </ul>
 <% end %>
