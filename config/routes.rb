@@ -20,4 +20,9 @@ Rails.application.routes.draw do
 
   get 'orders/:id/edit', to:'orders#edit', as: 'edit_animal'
   patch 'animals/:id', to: 'animals#update'
+
+  # orderedproduct routes
+  # get 'orderedproducts', to: 'orderedproducts#index', as: 'orderedproducts'
+
+  post 'orderedproducts/:product_id', to: 'orderedproducts#create', as: 'add_OP'
 end
