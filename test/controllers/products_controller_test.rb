@@ -122,25 +122,25 @@ describe ProductsController do
     end
   end
 
-  describe "destroy" do
-    it "succeeds for an extant product ID" do
-      product_id = Product.first.id
-
-      delete product_path(product_id)
-      must_redirect_to root_path
-
-      # The work should really be gone
-      Product.find_by(id: product_id).must_be_nil
-    end
-
-    it "renders 404 not_found and does not update the DB for a bogus work ID" do
-      start_count = Product.count
-
-      bogus_product_id = Product.last.id + 1
-      delete product_path(bogus_product_id)
-      must_respond_with :not_found
-
-      Product.count.must_equal start_count
-    end
-  end
+  # describe "destroy" do
+  #   it "succeeds for an extant product ID" do
+  #     product_id = Product.first.id
+  #
+  #     delete product_path(product_id)
+  #     must_redirect_to root_path
+  #
+  #     # The work should really be gone
+  #     Product.find_by(id: product_id).must_be_nil
+  #   end
+  #
+  #   it "renders 404 not_found and does not update the DB for a bogus work ID" do
+  #     start_count = Product.count
+  #
+  #     bogus_product_id = Product.last.id + 1
+  #     delete product_path(bogus_product_id)
+  #     must_respond_with :not_found
+  #
+  #     Product.count.must_equal start_count
+  #   end
+  # end
 end
