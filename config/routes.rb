@@ -27,4 +27,6 @@ Rails.application.routes.draw do
   # get 'orderedproducts', to: 'orderedproducts#index', as: 'orderedproducts'
 
   post 'orderedproducts/:product_id', to: 'orderedproducts#create', as: 'add_OP'
+
+  get 'orderedproducts/:id/edit', to: "orderedproducts#edit", as: 'edit_op'
 end
