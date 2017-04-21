@@ -20,7 +20,11 @@ Rails.application.routes.draw do
   resources :reviews, only: [:new, :create, :show]
   # post 'reviews', to: 'reviews#create', as: 'root'
 
-  get 'orders/:id/edit', to:'orders#edit', as: 'edit_order'
+  # get 'orders', to: 'orders#index', as: 'orders'  #do we want to include this?
+  # can DRY this with resources later
+  get 'orders/:id', to: 'orders#show', as: 'order'
+  get 'orders/:id/edit', to: 'orders#edit', as: 'edit_order'
+  post 'orders/:id/edit', to: 'orders#edit'
   patch 'orders/:id', to: 'orders#update'
 
   # orderedproduct routes

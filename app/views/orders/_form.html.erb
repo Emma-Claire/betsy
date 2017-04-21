@@ -1,21 +1,27 @@
 <%= form_for @order do |f| %>
-  <%= f.label :email %>
+  <%= f.label :Email_Address %>
   <%= f.text_field :email %>
 
-  <%= f.label :mailing_address %>
+  <%= f.label :Mailing_Address %>
   <%= f.text_field :mailing_address %>
 
-  <%= f.label :name_on_cc %>
+  <%= f.label :Name_on_Credit_Card %>
   <%= f.text_field :name_on_cc %>
 
-  <%= f.label :cc_num %>
+  <%= f.label :Credit_Card_Number %>
   <%= f.text_field :cc_num %>
 
-  <%= f.label :cc_exp %>
+  <%= f.label :Credit_Card_Expiration_Date %>
   <%= f.text_field :cc_exp%>
 
-  <%= f.label :cc_csv %>
+  <%= f.label :Credit_Card_CSV %>
   <%= f.text_field :cc_csv %>
 
-  <%= f.label :zip_code %>
+  <%= f.label :Zip_Code %>
   <%= f.text_field :zip_code %>
+
+  <%= f.submit "#{submit_text} Order"%>
+
+  <% end %>
+
+  <p>Please do not enter actual credit card info.  We are not able to secure your information at this time.</p>
