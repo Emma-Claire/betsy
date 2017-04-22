@@ -11,15 +11,23 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     if @review.save
-      redirect_to root_path
-    else render :new
-    end
-
-    def show
-      @review = Review.find_by(product_id: params[:product_id])
+      flash[:status] = :success
+      flash[:result_text] = "Review successfully submitted"
+      redirect_to products_path  #replace with nested route
+    else
+      flash[:status] = :failure
+      flash[:result_text] = "Could not create new review"
+      flash[:messages] = @review.errors.messages
+      render :new, status: :bad_request
     end
   end
 
+  def show
+    @review = Review.find_by(product_id: params[:product_id])
+    if @review.nil?
+      head :not_found
+    end
+  end
 
   private
 

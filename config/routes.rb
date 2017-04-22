@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   post 'products/:id/edit', to: 'products#edit'
   patch 'products/:id', to: 'products#update'
 
-  resources :reviews, only: [:new, :create, :show]
+  resources :reviews, only: [:new, :create, :show] #should be nested within products routes
   # post 'reviews', to: 'reviews#create', as: 'root'
 
   # get 'orders', to: 'orders#index', as: 'orders'  #do we want to include this?
