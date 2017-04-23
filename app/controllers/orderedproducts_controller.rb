@@ -1,21 +1,25 @@
 class OrderedproductsController < ApplicationController
 
   def index
+    find_order
+    @ops = Orderedproduct.where(order: @order)
+    # better in order show?
   end
 
   def create
-    find_order
+    find_order ||= start_new_order
     op = Orderedproduct.new(product_id: params[:product_id], order_id: @order.id, quantity: 1)
     if op.save #may change this
       flash[:success] = "Successfully added to cart"
     else
       flash[:failure] = "Unable to add item to cart"
     end
+    redirect_to product_path(Product.find(op.order_id))
   end
 
   def edit
     find_order
-    @op = Orderedproduct.find_by(orderedproduct_id: params[:orderedproduct_id], order_id: @order.id)
+    @op = Orderedproduct.find_by(id: params[:id], order_id: @order.id)
 
     if @op.nil?
       head :not_found
@@ -31,8 +35,9 @@ class OrderedproductsController < ApplicationController
 
   def find_order
     @order = Order.find_by(id: session[:order_id])
-    if @order.nil?
-      start_new_order
-    end
+    puts ">>>>>>>>>>>>>>>>>#{session[:order_id]}|| #{@order.id}"
+    # if @order.nil?
+    #   start_new_order
+    # end
   end
 end
