@@ -7,7 +7,8 @@ class OrderedproductsController < ApplicationController
   end
 
   def create
-    find_order ||= start_new_order
+    find_order
+    start_new_order if @order.nil?
     op = Orderedproduct.new(product_id: params[:product_id], order_id: @order.id, quantity: 1)
     if op.save #may change this
       flash[:success] = "Successfully added to cart"
@@ -34,8 +35,10 @@ class OrderedproductsController < ApplicationController
   end
 
   def find_order
-    @order = Order.find_by(id: session[:order_id])
-    puts ">>>>>>>>>>>>>>>>>#{session[:order_id]}|| #{@order.id}"
+    # unless session[:user_id].nil?
+      @order = Order.find_by(id: session[:order_id])
+    # end
+    # puts ">>>>>>>>>>>>>>>>>#{session[:order_id]}|| #{@order.id}"
     # if @order.nil?
     #   start_new_order
     # end

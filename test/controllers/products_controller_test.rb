@@ -22,6 +22,9 @@ describe ProductsController do
         must_respond_with :success
       end
     end
+
+    # case for no category => products list
+    # case for fake category
   end
 
   describe "show" do
@@ -29,7 +32,6 @@ describe ProductsController do
       product = Product.first
       get product_path(product)
       must_respond_with :success
-
     end
   end
 

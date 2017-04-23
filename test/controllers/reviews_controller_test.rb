@@ -2,7 +2,7 @@ require "test_helper"
 
 describe ReviewsController do
   describe "new" do
-    it "it loads new_review_path" do #should change this to test nested route
+    it "loads new_review_path" do #should change this to test nested route
       get new_review_path
       must_respond_with :success
     end

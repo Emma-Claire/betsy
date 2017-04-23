@@ -27,6 +27,8 @@ class OrderedproductTest < ActiveSupport::TestCase
       orderedproduct.valid?.must_equal false
       orderedproduct.errors.messages.must_include :quantity
     end
+
+    # need test for negative numbers?
   end
 
   describe "relations" do
