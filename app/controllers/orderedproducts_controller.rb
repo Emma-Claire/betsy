@@ -1,5 +1,8 @@
 class OrderedproductsController < ApplicationController
 
+  def index
+  end
+
   def create
     find_order
     op = Orderedproduct.new(product_id: params[:product_id], order_id: @order.id, quantity: 1)
