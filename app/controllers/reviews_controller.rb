@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   def new
-    @product = Product.find(params[:product_id])#check products params
+    #check products params
     # # if #current user and product.merchant_id == current user id
     #   redirect_to product_path(@product.id)
     # else
@@ -8,11 +8,14 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    @product = Product.find(params[:product_id])
     @review = Review.new(review_params)
+    @review.product = @product
+
     if @review.save
       flash[:status] = :success
       flash[:result_text] = "Review successfully submitted"
-      redirect_to product_path(product_id)
+      redirect_to product_path(@product.id)
     else
       flash[:status] = :failure
       flash[:result_text] = "Could not create new review"
@@ -31,6 +34,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    return params.permit(review: [:rating, :product_id, :comment])
+    return params.require(:review).permit(:rating, :comment)
   end
 end
