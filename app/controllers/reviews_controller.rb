@@ -1,11 +1,10 @@
 class ReviewsController < ApplicationController
   def new
-    @product = Product.find(params[:id])#check products params
+    @product = Product.find(params[:product_id])#check products params
     # # if #current user and product.merchant_id == current user id
     #   redirect_to product_path(@product.id)
     # else
-    @review = @product.Review.new
-    # redirect_to product_path(@product.id)
+    @review = Review.new
   end
 
   def create
@@ -13,7 +12,7 @@ class ReviewsController < ApplicationController
     if @review.save
       flash[:status] = :success
       flash[:result_text] = "Review successfully submitted"
-      redirect_to products_path  #replace with nested route
+      redirect_to product_path(product_id)
     else
       flash[:status] = :failure
       flash[:result_text] = "Could not create new review"
