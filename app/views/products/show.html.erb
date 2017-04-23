@@ -7,3 +7,4 @@
 <p>Sold by: <%= @product.merchant.username %></p>
 
 <%= link_to "Add to cart", add_OP_path(@product), class: "button", method: :post %>
+<%= link_to "Leave a review", new_product_review_path(@product), class: "button" %>
