@@ -1,6 +1,6 @@
 
 <section>
- <h1>Browse our products</h1>
+ <!-- <h1>Browse our products</h1>
 
 <h5><%= link_to "air", products_path("air") %> |
   <%= link_to "tropical", products_path("tropical") %> |
@@ -9,8 +9,8 @@
   <%= link_to "herbs", products_path("herbs") %> |
   <%= link_to "indoor trees", products_path("trees") %> |
   <%= link_to "planters", products_path("planters") %>
-</h5>
-
+</h5> -->
+<p>
 <ul>
   <% @products.each do |product| %>
     <li>
@@ -18,4 +18,5 @@
     </li>
   <% end %>
 </ul>
+</p>
 </section>
