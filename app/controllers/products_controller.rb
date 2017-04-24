@@ -15,6 +15,8 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    # @product.retired = false
+
 
     if @product.save
       redirect_to root_path
@@ -47,6 +49,6 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    return params.require(:product).permit(:name, :price, :category, :description, :inventory, :photo_url)
+    return params.require(:product).permit(:name, :price, :category, :description, :inventory, :photo_url, :retired)
   end
 end
