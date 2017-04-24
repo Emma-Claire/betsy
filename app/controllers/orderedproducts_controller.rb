@@ -36,8 +36,10 @@ class OrderedproductsController < ApplicationController
 
     if op.save
       flash[:success] = "Successfully updated item"
+      redirect_to orderedproducts_path
     else
       flash[:failure] = "Unable to add item to cart"
+      render :index, status: :not_found #redirect
     end
   end
 
