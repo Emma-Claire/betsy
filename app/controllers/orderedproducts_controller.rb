@@ -31,7 +31,6 @@ class OrderedproductsController < ApplicationController
   def update
     find_order
     @op = Orderedproduct.find_by(id: params[:id], order_id: @order.id)
-
     @op.update_attributes(op_params)
 
     if @op.save
@@ -58,7 +57,7 @@ class OrderedproductsController < ApplicationController
   private
 
   def op_params
-    return params.require(:orderedproduct).permit(:product)
+    return params.require(:orderedproduct).permit(:quantity)
   end
 
   def start_new_order
