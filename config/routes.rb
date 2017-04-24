@@ -37,6 +37,7 @@ category_constraints = {
 
   get 'orderedproducts/:id/edit', to: "orderedproducts#edit", as: 'edit_op'
 
-   get "/auth/:provider/callback", to: "merchants#auth_callback"
-   delete 'logout', to: 'merchants#destroy'
+  delete 'orderedproducts/:id', to: 'orderedproducts#destroy', as: "orderedproduct"
+  get "/auth/:provider/callback", to: "merchants#auth_callback"
+  delete 'logout', to: 'merchants#destroy'
 end
