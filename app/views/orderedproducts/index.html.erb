@@ -1,1 +1,19 @@
-<h1>Your cart</h1>
+<h1>Shopping Cart</h1>
+<h2>Items (<%= @ops.count %>)</h2>
+
+<% if @ops.empty? %>
+  <h3>
+    Your cart is currently empty. <%= link_to "Continue Shopping", products_path %>
+  </h3>
+<% end %>
+
+
+<ul>
+  <% @ops.each do |op| %>
+    <li>
+      <%= Product.find_by(id: op.order_id).name %>
+      <%= image_tag Product.find_by(id: op.order_id).photo_url %>
+      Qty: <%= op.quantity %>
+    </li>
+  <% end %>
+</ul>
