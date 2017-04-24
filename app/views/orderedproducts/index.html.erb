@@ -11,8 +11,8 @@
 <ul>
   <% @ops.each do |op| %>
     <li>
-      <%= Product.find_by(id: op.order_id).name %>
-      <%= image_tag Product.find_by(id: op.order_id).photo_url %>
+      <%= Product.find_by(id: op.product_id).name %>
+      <%= image_tag Product.find_by(id: op.product_id).photo_url %>
       Qty: <%= op.quantity %>
     </li>
   <% end %>

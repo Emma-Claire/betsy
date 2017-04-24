@@ -2,7 +2,7 @@ class OrderedproductsController < ApplicationController
 
   def index
     find_order
-    @ops = Orderedproduct.where(order: @order)
+    @ops = Orderedproduct.where(order_id: @order.id)
     # better in order show?
   end
 
@@ -15,7 +15,7 @@ class OrderedproductsController < ApplicationController
     else
       flash[:failure] = "Unable to add item to cart"
     end
-    redirect_to product_path(Product.find(op.order_id))
+    redirect_to product_path(Product.find(params[:product_id]))
   end
 
   def edit
