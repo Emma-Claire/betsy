@@ -2,7 +2,7 @@ class OrderedproductsController < ApplicationController
 
   def index
     find_order
-    @ops = Orderedproduct.where(order_id: @order.id)
+    @ops = Orderedproduct.where(order: @order)
   end
 
   def create
@@ -10,11 +10,11 @@ class OrderedproductsController < ApplicationController
     start_new_order if @order.nil?
     op = Orderedproduct.new(product_id: params[:product_id], order_id: @order.id, quantity: 1)
     if op.save #may change this
-      flash[:success] = "Successfully added to cart"
+      flash[:success] = "Successfully added #{Product.find_by(id: op.product_id).name} to cart"
     else
-      flash[:failure] = "Unable to add item to cart"
+      flash[:failure] = "Unable to add #{Product.find_by(id: op.product_id).name} to cart"
     end
-    redirect_to product_path(Product.find(params[:product_id]))
+    redirect_to orderedproducts_path#product_path(Product.find(params[:product_id]))
   end
 
   def edit
@@ -36,6 +36,18 @@ class OrderedproductsController < ApplicationController
       flash[:success] = "Successfully updated item"
     else
       flash[:failure] = "Unable to add item to cart"
+    end
+  end
+
+  def destroy
+    find_order
+    ops = Orderedproduct.where(id: params[:id], order_id: @order.id)
+    if ops.empty?
+      head :not_found
+    else
+      flash[:success] = "Successfully deleted #{Product.find_by(id: ops.first.product_id).name} from cart"
+      ops.destroy_all
+      redirect_to orderedproducts_path
     end
   end
 
