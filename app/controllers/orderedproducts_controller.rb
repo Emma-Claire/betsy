@@ -2,7 +2,7 @@ class OrderedproductsController < ApplicationController
 
   def index
     find_order
-    @ops = Orderedproduct.where(order_id: @order.id)
+    @ops = Orderedproduct.where(order: @order)
     # better in order show?
   end
 
