@@ -4,10 +4,11 @@ Rails.application.routes.draw do
 category_constraints = {
   category: /(air)|(tropical)|(succulents)|(cacti)|(herbs)|(trees)|(planters)/
 }
+  get 'merchants', to: 'merchants#index', as: 'merchants'
   get 'merchants/new', to: 'merchants#new', as: 'new_merchant'
   post 'merchants', to: 'merchants#create'
-
   get 'merchants/:id', to: 'merchants#show', as: 'merchant'
+
   get 'products(/:category)', to: 'products#index', as: 'products', constraints: category_constraints
   # get 'products/:id', to: 'products#show', as: 'product'
   # get 'products/new', to: 'products#new', as: 'new_product'
