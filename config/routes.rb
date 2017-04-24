@@ -36,4 +36,6 @@ Rails.application.routes.draw do
   post 'orderedproducts/:product_id', to: 'orderedproducts#create', as: 'add_OP'
 
   get 'orderedproducts/:id/edit', to: "orderedproducts#edit", as: 'edit_op'
+
+  delete 'orderedproducts/:id', to: 'orderedproducts#destroy', as: "orderedproduct"
 end
