@@ -1,5 +1,7 @@
 class OrderedproductsController < ApplicationController
 
+# before_action :require_login, only: [:show]
+
   def index
     find_order
     @ops = Orderedproduct.where(order: @order)

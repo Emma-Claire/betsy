@@ -1,6 +1,6 @@
 class MerchantsController < ApplicationController
 
-before_action :require_login, only: [:show]
+# before_action :require_login, only: [:show]
 
   def new
     @merchant = Merchant.new
