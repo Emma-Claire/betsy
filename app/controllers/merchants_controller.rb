@@ -1,7 +1,10 @@
 class MerchantsController < ApplicationController
 
 # before_action :require_login, only: [:show]
-
+  def index
+    @merchants = Merchant.all
+  end
+  
   def new
     @merchant = Merchant.new
   end
