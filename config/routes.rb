@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
-  category_constraints = {
-    category: /(air)|(tropical)|(succulents)|(cacti)|(herbs)|(trees)|(planters)/
-  }
 
+category_constraints = {
+  category: /(air)|(tropical)|(succulents)|(cacti)|(herbs)|(trees)|(planters)/
+}
   get 'merchants/new', to: 'merchants#new', as: 'new_merchant'
   post 'merchants', to: 'merchants#create'
 
@@ -36,4 +36,7 @@ Rails.application.routes.draw do
   post 'orderedproducts/:product_id', to: 'orderedproducts#create', as: 'add_OP'
 
   get 'orderedproducts/:id/edit', to: "orderedproducts#edit", as: 'edit_op'
+
+   get "/auth/:provider/callback", to: "merchants#auth_callback"
+   delete 'logout', to: 'merchants#destroy'
 end
