@@ -33,6 +33,8 @@ class OrderedproductsController < ApplicationController
     @op = Orderedproduct.find_by(id: params[:id], order_id: @order.id)
     @op.update_attributes(op_params)
 
+    # if !@op.check_inventory
+    #   flash[:failure] = "You may only add up to #{@op.product.inventory} of this item to your cart"
     if @op.save
       flash[:success] = "Successfully updated item"
       redirect_to orderedproducts_path
