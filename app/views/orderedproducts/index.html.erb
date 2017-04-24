@@ -15,7 +15,7 @@
       <%= image_tag Product.find_by(id: op.product_id).photo_url %>
       Qty: <%= op.quantity %>
       <section class="form">
-        <%= form_for op, url: { controller: "orderedproducts", action: "update" } do |f| %>
+        <%= form_for op, as: :post, url: orderedproduct_path(op.id), method: :patch do |f| %>
         <%= f.label :quantity %>
         <%= f.text_field :quantity %>
 

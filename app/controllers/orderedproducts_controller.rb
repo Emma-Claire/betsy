@@ -32,9 +32,9 @@ class OrderedproductsController < ApplicationController
     find_order
     @op = Orderedproduct.find_by(id: params[:id], order_id: @order.id)
 
-    op.update_attributes(op_params)
+    @op.update_attributes(op_params)
 
-    if op.save
+    if @op.save
       flash[:success] = "Successfully updated item"
       redirect_to orderedproducts_path
     else
