@@ -3,7 +3,6 @@ class OrderedproductsController < ApplicationController
   def index
     find_order
     @ops = Orderedproduct.where(order_id: @order.id)
-    # better in order show?
   end
 
   def create
@@ -27,7 +26,24 @@ class OrderedproductsController < ApplicationController
     end
   end
 
+  def update
+    find_order
+    @op = Orderedproduct.find_by(id: params[:id], order_id: @order.id)
+
+    op.update_attributes(op_params)
+
+    if op.save
+      flash[:success] = "Successfully updated item"
+    else
+      flash[:failure] = "Unable to add item to cart"
+    end
+  end
+
   private
+
+  def op_params
+    return params.require(:orderedproduct).permit(:product)
+  end
 
   def start_new_order
     @order = Order.create(status: "pending")
