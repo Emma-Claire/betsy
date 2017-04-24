@@ -9,5 +9,12 @@ class Product < ApplicationRecord
   validates :inventory, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0}
   validates :category, presence: true
   # photo_url -> presence or format?
-end
-#plants, planters, books, gardening, 
+
+  after_initialize :set_defaults, unless: :persisted?
+
+  private
+    def set_defaults
+      self.retired = false if self.retired.nil?
+    end
+  end
+#plants, planters, books, gardening,
