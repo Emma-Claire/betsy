@@ -20,8 +20,10 @@
   <%= f.label :Zip_Code %>
   <%= f.text_field :zip_code %>
 
-  <%= f.submit "#{submit_text} Order"%>
+  <%= f.hidden_field :status, value: "paid" %>
+
+  <%= f.submit value: "Place Order", class: "button alert", data: { confirm: "Are you sure you want to charge **$$Total** your card for this order?" } %>
 
   <% end %>
 
-  <p>Please do not enter actual credit card info.  We are not able to secure your information at this time.</p>
+  <p>***Please do not enter actual credit card info.  We are not able to secure your information at this time.***</p>
