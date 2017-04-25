@@ -1,36 +1,36 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-AirPlants:
-  name: AirPlants
+aloe:
+  name: aloe
   price: 5.50
-  category: AirPlants
+  category: air
   description: Aloe vera is a plant species of the genus Aloe. It grows wild in tropical climates around the world and is cultivated for agricultural and medicinal uses. Aloe is also used for decorative purposes and grows successfully indoors as a potted plant.
   inventory: 1
-  photo_url:
+  photo_url: MyString
   merchant: alice
 
-TropicalPlants:
-  name: TropicalPlants
+century:
+  name: century
   price: 8.20
-  category: TropicalPlants
+  category: tropical
   description: MyText
   inventory: 1
   photo_url: MyString
   merchant: sally
 
-Succulents:
-  name: Succulents
+goethe:
+  name: goethe
   price: 5.50
-  category: Succulents
+  category: succulents
   description: Aloe vera is a plant species of the genus Aloe. It grows wild in tropical climates around the world and is cultivated for agricultural and medicinal uses. Aloe is also used for decorative purposes and grows successfully indoors as a potted plant.
   inventory: 1
-  photo_url:
+  photo_url: MyString
   merchant: alice
 
 Cacti:
   name: Cacti
   price: 8.20
-  category: Cacti
+  category: cacti
   description: MyText
   inventory: 1
   photo_url: MyString
@@ -39,7 +39,7 @@ Cacti:
 Herbs:
   name: Herbs
   price: 8.20
-  category: Herbs
+  category: herbs
   description: MyText
   inventory: 1
   photo_url: MyString
@@ -48,16 +48,16 @@ Herbs:
 IndoorTrees:
   name: IndoorTrees
   price: 8.20
-  category: IndoorTrees
+  category: trees
   description: MyText
   inventory: 1
   photo_url: MyString
   merchant: sally
 
-Planters:
+Planter:
   name: Planters
   price: 8.20
-  category: Planters
+  category: planters
   description: MyText
   inventory: 1
   photo_url: MyString
