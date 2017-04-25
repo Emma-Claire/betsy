@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   has_many :reviews
   has_many :orderedproducts
+  has_many :orders, through: :orderedproducts
   belongs_to :merchant
 
   validates :name, presence: true,
@@ -25,5 +26,10 @@ class Product < ApplicationRecord
   def set_defaults
     self.retired = false if self.retired.nil?
   end
+
+  def avg_rating
+    ratings = reviews.map { | review | review.rating }
+    '%.1f' % (ratings.sum.to_f / ratings.count) # to one decimal point
+    # ('%.1f' % avg)
+  end
 end
-#plants, planters, books, gardening,
