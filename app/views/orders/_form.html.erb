@@ -20,7 +20,9 @@
   <%= f.label :Zip_Code %>
   <%= f.text_field :zip_code %>
 
-  <%= f.submit "#{submit_text} Order"%>
+  <%= f.hidden_field :status, value: "paid" %>
+
+  <%= f.submit value: "Place Order", class: "button" %>
 
   <% end %>
 

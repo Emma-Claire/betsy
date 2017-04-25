@@ -27,3 +27,7 @@
     </li>
   <% end %>
 </ul>
+
+<% if !@ops.empty? %>
+  <%= link_to "Check Out", edit_order_path(@ops.first.order), class: "button" %>
+<% end %>

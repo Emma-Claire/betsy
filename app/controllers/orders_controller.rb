@@ -4,8 +4,11 @@ class OrdersController < ApplicationController
     @orders = Order.all
   end
 
-  def new
-    @order = Order.new(order_params)
+  # def new
+  #   @order = Order.new(order_params)
+  # end
+  def show
+
   end
 
   def edit
@@ -13,10 +16,14 @@ class OrdersController < ApplicationController
   end
 
   def update
+    @order = Order.find_by(id: params[:id])
     @order.update_attributes(order_params)
     if @order.save
       flash[:status] = :success
-      flash[:result_text] = "Successfully updated your order (order id: #{@order_id})"
+      flash[:result_text] = "Your order is complete (order id: #{@order_id})"
+      if session[:order_id]
+        session[:order_id] = nil
+      end
       # need to update this path once we know where we want it to go
       redirect_to products_path
     else
@@ -29,6 +36,6 @@ class OrdersController < ApplicationController
 
 private
   def order_params
-    params.require(:order).permit(:status)
+    params.require(:order).permit(:status, :email, :mailing_address, :name_on_cc, :cc_num, :cc_exp, :cc_csv, :zip_code)
   end
 end
