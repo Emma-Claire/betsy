@@ -45,7 +45,9 @@ class OrderedproductsController < ApplicationController
       redirect_to orderedproducts_path
     else
       flash[:failure] = "Unable to add item to cart"
-      render :index, status: :not_found #redirect
+      flash[:message] = @op.errors.messages
+      redirect_to orderedproducts_path
+      #, status: :not_found  #redirect
     end
   end
 
