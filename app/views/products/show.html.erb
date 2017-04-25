@@ -1,10 +1,24 @@
+<div class="row">
+<%= image_tag(@product.photo_url, alt: "product img", class: "large-6 columns") %>
+
+<secion class="large-6 columns">
 <h1><%= @product.name %></h1>
+<h3>$<%= @product.price %></h3>
+<p><%= @product.reviews.empty? ? "⏤" : @product.avg_rating %> |
+  <%= link_to "#{@product.reviews.count} Reviews", product_path(@product) %>
+</p>
+<p>Merchant: <%= link_to @product.merchant.username, merchant_path(@product.merchant.id) %></p>
+<p><%= @product.description %></p>
+
+<%= link_to "Add to cart", add_OP_path(@product), class: "button cart_button", method: :post %>
+</section>
+</div>
 
 
-<%= image_tag(@product.photo_url, alt: "product img") %>
-<p>Price: <%= @product.price %></p>
-<p>Description: <%= @product.description %></p>
-<p>Sold by: <%= link_to @product.merchant.username, merchant_path(@product.merchant.id) %></p>
-
-<%= link_to "Add to cart", add_OP_path(@product), class: "button", method: :post %>
-<%= link_to "Leave a review", new_product_review_path(@product), class: "button" %>
+<section>
+  <h5 class="row large-12 columns">Reviews</h5>
+  <div class="row">
+    <p class="large-2 columns">
+    <%= link_to "Leave a review", new_product_review_path(@product), class: "button secondary large-4 columns" %>
+  </div>
+</section>

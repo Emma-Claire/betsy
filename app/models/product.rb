@@ -12,9 +12,17 @@ class Product < ApplicationRecord
 
   after_initialize :set_defaults, unless: :persisted?
 
-  private
-    def set_defaults
-      self.retired = false if self.retired.nil?
-    end
+
+  def avg_rating
+    ratings = reviews.map { | review | review.rating }
+    '%.1f' % (ratings.sum.to_f / ratings.count) # to one decimal point
+    # ('%.1f' % avg)
   end
+
+  private
+
+  def set_defaults
+      self.retired = false if self.retired.nil?
+  end
+end
 #plants, planters, books, gardening,
