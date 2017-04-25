@@ -5,6 +5,6 @@
 <p>Price: <%= @product.price %></p>
 <p>Description: <%= @product.description %></p>
 <p>Sold by: <%= link_to @product.merchant.username, merchant_path(@product.merchant.id) %></p>
-
+<p>Retired: <%= @product.retired %></p>
 <%= link_to "Add to cart", add_OP_path(@product), class: "button", method: :post %>
 <%= link_to "Leave a review", new_product_review_path(@product), class: "button" %>

@@ -1,5 +1,6 @@
 class Order < ApplicationRecord
   has_many :orderedproducts
+  has_many :products, through: :orderedproducts
 
   #inclusion forces presence to be true!!!!!
   validates :status, inclusion: {
