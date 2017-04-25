@@ -2,13 +2,14 @@ require "test_helper"
 
 describe ProductsController do
 
-  CATEGORIES = %w(AirPlants TropicalPlants Succulents Cacti Herbs IndoorTrees Planters)
+
+  CATEGORIES = %w(air tropical succulents cacti herbs trees planters)
   INVALID_CATEGORIES = ["nope", "42", "", "  ", "Succulentstrailingtext"]
 
   describe "index" do
     it "succeeds for a real category with many products" do
       CATEGORIES.each do |category|
-        Product.by_category(category).count.must_be :>, 0, "No #{category.pluralize} in the test fixtures"
+        Product.where(category: category).count.must_be :>, 0, "No #{category.pluralize} in the test fixtures"
         get products_path(category)
         must_respond_with :success
       end

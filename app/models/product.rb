@@ -17,10 +17,10 @@ class Product < ApplicationRecord
 
   after_initialize :set_defaults, unless: :persisted?
 
-  def self.by_category(category)
-    category = category.singularize.downcase
-    self.where(category: category)
-  end
+  # def self.by_category(category)
+  #   category = category.singularize.downcase
+  #   self.where(category: category)
+  # end
 
   def avg_rating
     ratings = reviews.map { | review | review.rating }
