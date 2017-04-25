@@ -46,9 +46,9 @@ describe ReviewsController do
 
   describe "show" do
     it "succeeds for an existing review (or reviewed product?)" do
-      review_id = Review.first.id
-      get reviews_path(review_id)
-      must respond_with :success
+      review = Review.first
+      get :show, id: review, product_id: review.product_id
+      assert_response :success
     end
 
     it "renders 404 not found for a non-existing review" do
