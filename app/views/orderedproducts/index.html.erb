@@ -17,13 +17,17 @@
       <section class="form">
         <%= form_for op, url: orderedproduct_path(op.id), method: :patch do |f| %>
         <%= f.label :quantity %>
-        <%= f.text_field :quantity %>
+        <%= f.number_field :quantity, step: 1, in: 1..200 %>
 
         <%= f.submit value: "Update QTY", class: "button"%>
 
       <% end %>
     </section>
-      <%= link_to "Remove from Cart", orderedproduct_path(op), method: :delete, data: {confirm: "Are you sure you want to delete this item"}, class: "button alert" %>
+      <%= link_to "Remove from Cart", orderedproduct_path(op), method: :delete, data: {confirm: "Are you sure you want to delete this item?"}, class: "button alert" %>
     </li>
   <% end %>
 </ul>
+
+<% if !@ops.empty? %>
+  <%= link_to "Check Out", edit_order_path(@ops.first.order), class: "button" %>
+<% end %>

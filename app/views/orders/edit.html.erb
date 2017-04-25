@@ -1,3 +1,31 @@
-<h2>Update Billing Info for Your Order</h2>
 
-<%= render partial: "form", locals: { submit_text: "Update Billing Info for"} %>
+<h2>Your Current Order</h2>
+
+<article>
+    <table>
+      <thead>
+        <th>Product</th>
+        <th>Image</th>
+        <th>Quantity</th>
+        <th>Unit Price</th>
+      </thead>
+      <tbody>
+        <% @order.orderedproducts.each do |op| %>
+        <tr>
+          <td><%= Product.find_by(id: op.product_id).name %></td>
+          <td><%= image_tag Product.find_by(id: op.product_id).photo_url %></td>
+          <td><%= op.quantity %></td>
+          <td>$<%= op.product.price * op.quantity %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</article>
+
+<h3>Grand Total: $</h3>
+
+<h3>Submit Billing Info and Place Your Order</h3>
+
+<%= render partial: "form" %>
+
+<%= link_to "Return to Cart", orderedproducts_path, class: "button" %>
