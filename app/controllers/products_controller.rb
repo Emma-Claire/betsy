@@ -47,6 +47,14 @@ class ProductsController < ApplicationController
     end
   end
 
+  def destroy
+    #product is removed from the list so users cannot see it, only merchant can
+    @product = Product.find_by(id: params[:id])
+    if !@product.retired? #true
+      @product.retired == true
+    end
+  end
+
   private
   def product_params
     return params.require(:product).permit(:name, :price, :category, :description, :inventory, :photo_url, :retired)
