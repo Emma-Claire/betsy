@@ -17,11 +17,7 @@
       <section class="form">
         <%= form_for op, url: orderedproduct_path(op.id), method: :patch do |f| %>
         <%= f.label :quantity %>
-<<<<<<< HEAD
-        <%= f.number_field :quantity, step: 1 %>
-=======
         <%= f.number_field :quantity, step: 1, in: 1..10  %>
->>>>>>> 2952b00ea77a5135bb9cb362ba4e0e6a0b93b783
 
         <%= f.submit value: "Update QTY", class: "button"%>
 
