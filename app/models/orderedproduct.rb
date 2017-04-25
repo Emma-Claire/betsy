@@ -6,6 +6,7 @@ class Orderedproduct < ApplicationRecord
 
 #need to wrote code to keep user from putting more items in cart than are in inventory
   # validates :quantity, numericality: { only_integer: true, greater_than: 0, less_than: (Product.find(:id product_id).inventory }, on: :update
+  validate :cannot_put_more_items_in_cart_than_are_available_in_inventory, on: :update
 
   # def check_inventory
   #   product = Product.find_by(id: product_id)
@@ -15,6 +16,13 @@ class Orderedproduct < ApplicationRecord
   #     return false
   #   end
   # end
+
+  def cannot_put_more_items_in_cart_than_are_available_in_inventory
+    product = Product.find_by(id: product_id)
+    if quantity > product.inventory
+      errors.add(:quantity, "The quantity requested is not available")
+    end
+  end
 
   # assume only called on an array?
 
