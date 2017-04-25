@@ -9,6 +9,10 @@ category_constraints = {
   post 'merchants', to: 'merchants#create'
   get 'merchants/:id', to: 'merchants#show', as: 'merchant'
 
+  resources :merchants, except: [:destroy, :edit, :update] do
+    resources :orders, only: [:index]
+  end
+
   get 'products(/:category)', to: 'products#index', as: 'products', constraints: category_constraints
   # get 'products/:id', to: 'products#show', as: 'product'
   # get 'products/new', to: 'products#new', as: 'new_product'
