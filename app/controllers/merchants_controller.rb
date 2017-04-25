@@ -1,10 +1,10 @@
 class MerchantsController < ApplicationController
 
-# before_action :require_login, only: [:show]
+  # before_action :require_login, only: [:show]
   def index
     @merchants = Merchant.all
   end
-  
+
   def new
     @merchant = Merchant.new
   end
@@ -64,7 +64,6 @@ class MerchantsController < ApplicationController
 
   private
 
-  def
   def merchant_params
     return params.require(:merchant).permit(:username, :email)
   end
