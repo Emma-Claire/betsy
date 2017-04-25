@@ -25,5 +25,10 @@ class Product < ApplicationRecord
   def set_defaults
     self.retired = false if self.retired.nil?
   end
+
+  def avg_rating
+    ratings = reviews.map { | review | review.rating }
+    '%.1f' % (ratings.sum.to_f / ratings.count) # to one decimal point
+    # ('%.1f' % avg)
+  end
 end
-#plants, planters, books, gardening,
