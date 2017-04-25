@@ -1,5 +1,16 @@
 <h1> <%= @merchant.username %>'s Plantsy Shop</h1>
 
+<h3>Orders</h3>
+<%= @merchant.products.each do |product| %>
+  <%= product.orders.each do |order| %>
+    <ul>
+      <li>product:<%= product.name %><%= order.status %> </li>
+    </ul>
+  <% end %>
+<% end %>
+
+<h3><%= link_to "Add new products", new_product_path %></h3>
+
 <% @merchant.products.each do |product| %>
 <ul>
   <li><%= link_to "#{product.name}", product_path(product.id) %></li>
@@ -9,6 +20,6 @@
 
 <div>
   <%= link_to "Edit", edit_product_path(product.id) %>
-  <%= link_to "Retire", products_path(product.id), method: :post %>
+  <%= link_to "Retire", product_path(product.id), method: :delete %>
 </div>
 <% end %>

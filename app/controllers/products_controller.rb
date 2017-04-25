@@ -50,9 +50,16 @@ class ProductsController < ApplicationController
   def destroy
     #product is removed from the list so users cannot see it, only merchant can
     @product = Product.find_by(id: params[:id])
-    if !@product.retired? #true
-      @product.retired == true
-    end
+      if @product.nil?
+        head :not_found
+      else
+        @product.retired = true
+        if @product.save
+          redirect_to product_path(@product.id)
+        else
+          flash[:message] = "You could not retire this product"
+        end
+      end
   end
 
   private
