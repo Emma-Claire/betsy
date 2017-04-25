@@ -2,8 +2,8 @@
 
 <% @merchant.products.each do |product| %>
 <ul>
-  <li><%= image_tag product.photo_url %></li>
   <li><%= link_to "#{product.name}", product_path(product.id) %></li>
+  <li><%= image_tag product.photo_url %></li>
   <li><%= product.category%></li>
 </ul>
 
@@ -11,5 +11,4 @@
   <%= link_to "Edit", edit_product_path(product.id) %>
   <%= link_to "Retire", products_path(product.id), method: :post %>
 </div>
-
 <% end %>

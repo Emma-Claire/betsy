@@ -12,6 +12,7 @@ describe ReviewsController do
     it "adds a review to the database " do
       start_count = Review.count
 
+
       review_params= {
         review: {
           rating: 3,
