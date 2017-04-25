@@ -1,9 +1,12 @@
+require "simplecov"
+SimpleCov.start
+
 require "test_helper"
 
 describe ReviewsController do
   describe "new" do
-    it "loads new_review_path" do #should change this to test nested route
-      get new_review_path
+    it "loads new_product_review_path" do
+      get new_product_review_path(products(:planters).id)
       must_respond_with :success
     end
   end
@@ -11,8 +14,6 @@ describe ReviewsController do
   describe "create" do
     it "adds a review to the database " do
       start_count = Review.count
-
-
       review_params= {
         review: {
           rating: 3,
@@ -45,7 +46,7 @@ describe ReviewsController do
   end
 
   describe "show" do
-    it "succeeds for an existing review (or reviewed product?)" do
+    it "succeeds for an existing reviewed product?)" do
       review = Review.first
       get :show, id: review, product_id: review.product_id
       assert_response :success
@@ -53,7 +54,7 @@ describe ReviewsController do
 
     it "renders 404 not found for a non-existing review" do
       bad_review_id = Review.last.id + 1
-      get review_path(bad_review_id)
+      get product_review_path(bad_review_id)
       must_respond_with :not_found
     end
   end
