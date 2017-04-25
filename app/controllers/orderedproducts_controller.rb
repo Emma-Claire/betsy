@@ -5,6 +5,7 @@ class OrderedproductsController < ApplicationController
   def index
     find_order
     @ops = Orderedproduct.where(order: @order)
+    num_items_in_cart
   end
 
   def create
@@ -82,5 +83,9 @@ class OrderedproductsController < ApplicationController
     # if @order.nil?
     #   start_new_order
     # end
+  end
+
+  def num_items_in_cart
+    @items = Orderedproduct.cart_quantity(session[:order_id])
   end
 end
