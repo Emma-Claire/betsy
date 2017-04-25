@@ -10,7 +10,12 @@ class OrderedproductsController < ApplicationController
   def create
     find_order
     start_new_order if @order.nil?
-    op = Orderedproduct.new(product_id: params[:product_id], order_id: @order.id, quantity: 1)
+    op = Orderedproduct.find_by(product_id: params[:product_id], order_id: @order.id)
+    if op
+      op.quantity += 1
+    else
+      op = Orderedproduct.new(product_id: params[:product_id], order_id: @order.id, quantity: 1)
+    end
     if op.save #may change this
       flash[:success] = "Successfully added #{Product.find_by(id: op.product_id).name} to cart"
     else
