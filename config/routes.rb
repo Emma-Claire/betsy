@@ -15,7 +15,7 @@ category_constraints = {
 
   # post 'products', to: 'products#create'
   #
-  # get 'products/:id/edit', to: 'products#edit', as: 'edit_product'
+  #  get 'products/:id/edit', to: 'products#edit', as: 'edit_product'
   #
   # post 'products/:id/edit', to: 'products#edit'
   # patch 'products/:id', to: 'products#update'
