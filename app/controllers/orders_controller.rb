@@ -1,14 +1,14 @@
 class OrdersController < ApplicationController
 
   def index
-    @orders = Order.all
+    @orders = Merchant.find_by(id: params[:merchant_id]).orders
   end
 
   # def new
   #   @order = Order.new(order_params)
   # end
   def show
-
+    @order = Order.find_by(id: params[:id])
   end
 
   def edit

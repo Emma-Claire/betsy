@@ -13,4 +13,12 @@ class Merchant < ApplicationRecord
     return user
   end
 
+  def orders
+    orders_array = []
+    products.each do |product|
+     orders_array += product.orders
+    end
+    orders_array.uniq!
+  end
+
 end
