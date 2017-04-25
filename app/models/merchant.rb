@@ -13,12 +13,14 @@ class Merchant < ApplicationRecord
     return user
   end
 
-  def orders
-    orders_array = []
+  def find_orders
+    orders = []
     products.each do |product|
-     orders_array += product.orders
+      product.orders.each do |order|
+        orders << order if order.status != "pending"
+      end
     end
-    orders_array.uniq!
+    orders.uniq
   end
 
 end

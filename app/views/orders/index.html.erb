@@ -1,4 +1,7 @@
 <h1>Order Fulfillment</h1>
 
-<%= @orders.products.each do |product| %>
-  <%= product.
+<h5>Paid Orders (<% @orders["paid"].nil? ? "0" : @orders["paid"].count %>) |
+  Shipped Orders (<% @orders["shipped"].nil? ? "0" : @orders["shipped"].count %>) |
+  Cancelled Orders (<% @orders["cancelled"].nil? ? "0" : @orders["cancelled"].count %>)</h5>
+
+<p> Total revenue: </p>
