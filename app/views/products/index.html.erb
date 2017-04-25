@@ -1,22 +1,9 @@
-
 <section>
- <!-- <h1>Browse our products</h1>
-
-<h5><%= link_to "air", products_path("air") %> |
-  <%= link_to "tropical", products_path("tropical") %> |
-  <%= link_to "succulents", products_path("succulents") %> |
-  <%= link_to "cacti", products_path("cacti") %> |
-  <%= link_to "herbs", products_path("herbs") %> |
-  <%= link_to "indoor trees", products_path("trees") %> |
-  <%= link_to "planters", products_path("planters") %>
-</h5> -->
-<p>
 <ul>
   <% @products.each do |product| %>
     <li>
-      <%= link_to product.name, product_path(product) %>
+      <%= link_to product.name, product_path(product.id) %>
     </li>
   <% end %>
 </ul>
-</p>
 </section>

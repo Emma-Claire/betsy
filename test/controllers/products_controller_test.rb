@@ -2,8 +2,7 @@ require "test_helper"
 
 describe ProductsController do
 
-  CATEGORIES = %w(AirPlants
-  TropicalPlants Succulents Cacti Herbs IndoorTrees Planters)
+  CATEGORIES = %w(AirPlants TropicalPlants Succulents Cacti Herbs IndoorTrees Planters)
   INVALID_CATEGORIES = ["nope", "42", "", "  ", "Succulentstrailingtext"]
 
   describe "index" do
@@ -18,7 +17,7 @@ describe ProductsController do
     it "succeeds for a real category with no products" do
       Product.destroy_all
       CATEGORIES.each do |category|
-        get products_path(category)
+        get products_path
         must_respond_with :success
       end
     end
@@ -29,14 +28,13 @@ describe ProductsController do
 
   describe "show" do
     it "shows a product that exists" do
-      product = Product.first
+      product = Product.last
       get product_path(product)
       must_respond_with :success
     end
   end
 
   describe "create" do
-
     it "adds a product to the database" do
       product_data = {
         product: {
@@ -111,7 +109,7 @@ describe ProductsController do
       }
 
       patch product_path(product), params: product_data
-      must_respond_with :not_found
+      must_respond_with :bad_request
 
       # Verify the DB was not modified
       Product.find(product.id).name.must_equal product.name

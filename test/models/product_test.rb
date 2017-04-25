@@ -52,18 +52,14 @@ class ProductTest < ActiveSupport::TestCase
    end
 
    it "requires a name" do
-     product = Product.new
-     product.valid?.must_be false
+     product = Product.new(name: '', price: 3, inventory: 2, category: 'air')
+     product.valid?.must_equal false
      product.errors.messages.must_include :name
    end
 
-   it "requires a unique name" do
-
-   end
-
    it "requires a price" do
-     product = Product.new
-     product.valid?.must_be false
+     product = Product.new(name: 'la', inventory: 2, category: 'air')
+     product.valid?.must_equal false
      product.errors.messages.must_include :price
    end
  end

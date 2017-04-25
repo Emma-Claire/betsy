@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
 
 
     if @product.save
-      redirect_to root_path
+      redirect_to products_path
     else
       render :new, status: :bad_request
     end

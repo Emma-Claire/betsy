@@ -20,8 +20,8 @@ describe ReviewsController do
         }
       }
 
-      post reviews_path, params: review_params
-      must_redirect_to root_path
+      post product_product_id_reviews_path, params: review_params
+      must_redirect_to product_path(product_id)
 
       start_count.must_equal start_count + 1
 
@@ -46,7 +46,7 @@ describe ReviewsController do
   describe "show" do
     it "succeeds for an existing review (or reviewed product?)" do
       review_id = Review.first.id
-      get review_path(review_id)
+      get reviews_path(review_id)
       must respond_with :success
     end
 
