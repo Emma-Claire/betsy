@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
 
   def index
-    orders = Merchant.find_by(id: params[:merchant_id]).find_orders
-    # any way to move this logic into the model? -> add keys for paid, pending, and shipped
-    @orders = orders.group_by { |order| order.status }
+    merchant = Merchant.find_by(id: params[:merchant_id])
+    @merchant_orders = merchant.orders_by_status
+    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#{@orders}"
   end
 
   def show
