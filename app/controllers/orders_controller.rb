@@ -11,7 +11,12 @@ class OrdersController < ApplicationController
   end
 
   def edit
-    @order = Order.find(params[:id])
+    # if check_inventory
+      @order = Order.find(params[:id]) #edit had only had this line and an end in it
+    # else
+    #   flash.now[:status] = :failure
+    #   flash.now[:result_text] = "There aren't enough #{@order_id.product.name} to fulfill your order."
+    # end
   end
 
   def update

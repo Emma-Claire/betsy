@@ -1,5 +1,5 @@
 <h1>Shopping Cart</h1>
-<h2>Items (<%= @ops.count %>)</h2>
+<h2>Items (<%= @order.nil? ? 0 : @order.item_total %>)</h2>
 
 <% if @ops.empty? %>
   <h3>

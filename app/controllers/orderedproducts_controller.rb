@@ -5,7 +5,15 @@ class OrderedproductsController < ApplicationController
   def index
     find_order
     @ops = Orderedproduct.where(order: @order)
-    num_items_in_cart
+    @items
+    message = ""
+    @ops.each do |op|
+      message += check_stock(op.product_id, op.quantity, op.product.name).to_s
+      message += "\n"
+    end
+    if message.present?
+      flash[:warning] = message
+    end
   end
 
   def create
@@ -64,7 +72,15 @@ class OrderedproductsController < ApplicationController
     end
   end
 
+
+
   private
+
+  def check_stock(id, quantity, name)
+    if !Product.in_stock?(id, quantity)
+      "\n\nSorry! There are not enough #{name}'s' to fulfill your order."
+    end
+  end
 
   def op_params
     return params.require(:orderedproduct).permit(:quantity)
@@ -85,7 +101,4 @@ class OrderedproductsController < ApplicationController
     # end
   end
 
-  def num_items_in_cart
-    @items = Orderedproduct.cart_quantity(session[:order_id])
-  end
 end
