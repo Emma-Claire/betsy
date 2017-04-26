@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action
 
   def index
     orders = Merchant.find_by(id: params[:merchant_id]).find_orders
