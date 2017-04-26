@@ -22,7 +22,7 @@ price,merchant_id,inventory,name,description,photo_url,category
 25.94,22,5,Lois Bowman,Reduced dynamic parallelism,https://robohash.org/molestiaeexercitationemet.png?size=50x50&set=set1,Aquamarine
 18.23,19,7,Scott Flores,Visionary exuding customer loyalty,https://robohash.org/exercitationemmodicorrupti.png?size=50x50&set=set1,Fuscia
 13.13,13,70,Lucky Cactus,With 13 beautiful spines this cactus is sure to bring you luck,/assets/images/cactus_1_lucky.jpg,Cactus
-49.99,7,42,Brain Cactus,Comes growing in own skull pot,/assets/images/cactus_2_brain_cactus.jpg,Cactus
+49.99,7,42,Brain Cactus,Comes growing in own skull pot,cactus_2_brain_cactus.jpg,Cactus
 12.00,15,45,Fuzzy Cactus,Looks soft enough to cuddle with,/assets/images/cactus_3_fuzzy.jpg,Cactus
 20.20,20,0,Eyeball Cactus,For the visionary cactus cultivator,/assets/images/cactus_4_eyeballcacti.jpg,Cactus
 16.63,24,4,Momma Bear and Baby Bear Cacti,When you are ready for a little one of your own,/assets/images/cactus_5_momma_baby.jpg,Cactus
