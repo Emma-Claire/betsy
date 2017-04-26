@@ -28,4 +28,13 @@ class Order < ApplicationRecord
     return unavailable
   end
 
+
+  def total
+    t = 0
+    orderedproducts.each do |op|
+      t += (op.product.price * op.quantity)
+    end
+    return t.round(2)
+  end
+
 end
