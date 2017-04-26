@@ -58,16 +58,49 @@ describe MerchantsController do
   end
 
   describe "auth_callback" do
-    it "should get create new session" do
-      get merchants_create_url
-      must_respond_with :success
+    it "Registers a new user" do
+      start_count = Merchant.count
+# build auth info for user not in database
+    user = Merchant.new(
+    {
+      username: "test_user",
+      email: "test@user.net",
+      oauth_provider: "github",
+      oauth_uid: 99999
+    }
+    )
+    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(mock_auth_hash(user))
+
+    get auth_callback_path(:github)
+
+    must_redirect_to products_path
+
+    session[:user_id].must_equal Merchant.last.id, "Merchant not logged in"
+
+      Merchant.count.must_equal start_count + 1
+    end
+
+    it "accepts a returning user" do
+      start_count = Merchant.count
+      user = merchants(:alice)
+      OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(mock_auth_hash(user))
+      get auth_callback_path(:github)
+
+      must_redirect_to products_path
+
+      session[:user_id].must_equal user.id, "Merchant not logged in"
+
+      Merchant.count.must_equal start_count
+    end
+
+    it "rejects incomplete auth data" do
+
     end
   end
 
   describe "destroy (logged out)" do
     it "should get logout" do
-      get merchants_logout_url
-      value(response).must_be :success?
+
     end
   end
 end
