@@ -1,17 +1,26 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 alice:
+  oauth_provider: github
+  oauth_uid: 13371337
   username: alice
   email: alice@domainname.org
 
-sally:
-  username: sally
-  email: sally@domainname.org
 
-alex:
-  username: alex
-  email: alex@domainname.org
+  sally:
+    oauth_provider: github
+    oauth_uid: 12345
+    username: sally
+    email: sally@domainname.org
 
-lyle:
-  username: lyle
-  email: lyle@domainname.org
+    alex:
+      oauth_provider: github
+      oauth_uid: 123455
+      username: alex
+      email: alex@domainname.org
+
+      lyle:
+        oauth_provider: github
+        oauth_uid: 123897
+        username: lyle
+        email: lyle@domainname.org
