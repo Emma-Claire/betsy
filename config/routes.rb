@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+
 category_constraints = {
   category: /(air)|(tropical)|(succulents)|(cacti)|(herbs)|(trees)|(planters)/
 }
