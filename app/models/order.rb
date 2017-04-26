@@ -18,4 +18,14 @@ class Order < ApplicationRecord
   def item_total
     orderedproducts.map { |op| op.quantity }.sum
   end
+
+  def verify_inventory
+    unavailable = []
+    orderedproducts.each do |op|
+      product = Product.find_by(id: op.product_id)
+      unavailable << product.name if (op.quantity > product.inventory)
+    end
+    return unavailable
+  end
+
 end

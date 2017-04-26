@@ -22,9 +22,9 @@ class Product < ApplicationRecord
   #   self.where(category: category)
   # end
 
-  def self.in_stock?(id, quantity)
-    Product.find(id).inventory >= quantity
-  end
+  # def self.in_stock?(id, quantity)
+  #   Product.find(id).inventory >= quantity
+  # end
 
   def avg_rating
     ratings = reviews.map { | review | review.rating }

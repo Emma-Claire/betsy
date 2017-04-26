@@ -15,6 +15,7 @@ class Orderedproduct < ApplicationRecord
     end
   end
 
+
   # assume only called on an array?
 
 end
