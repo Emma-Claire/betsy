@@ -45,6 +45,6 @@ category_constraints = {
 
   patch 'orderedproducts/:id', to: 'orderedproducts#update', as: 'orderedproduct'
   delete 'orderedproducts/:id', to: 'orderedproducts#destroy'
-  get "/auth/:provider/callback", to: "merchants#auth_callback"
+  get "/auth/:provider/callback", to: "merchants#auth_callback", as: 'auth_callback'
   delete 'logout', to: 'merchants#destroy'
 end

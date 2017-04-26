@@ -30,7 +30,7 @@ class ActiveSupport::TestCase
     OmniAuth.config.test_mode = true
   end
 
-  def mock_auth_hash(merchant)
+  def mock_auth_hash(user)
     return {
       provider: user.oauth_provider,
       uid: user.oauth_uid,
