@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action
 
   def index
     orders = Merchant.find_by(id: params[:merchant_id]).find_orders
@@ -11,7 +12,19 @@ class OrdersController < ApplicationController
   end
 
   def edit
-    @order = Order.find(params[:id])
+      @order = Order.find(params[:id]) #edit had only had this line and an end in it
+      problem_products = @order.verify_inventory
+      if !problem_products.empty?
+        flash[:message] = "There are not enough of the following products in stock: #{problem_products}"
+        redirect_to orderedproducts_path
+      else
+        render :edit
+      end
+
+    # else
+    #   flash.now[:status] = :failure
+    #   flash.now[:result_text] = "There aren't enough #{@order_id.product.name} to fulfill your order."
+    # end
   end
 
   def update
@@ -36,5 +49,14 @@ class OrdersController < ApplicationController
 private
   def order_params
     params.require(:order).permit(:status, :email, :mailing_address, :name_on_cc, :cc_num, :cc_exp, :cc_csv, :zip_code)
+  end
+
+  def place_order?
+    @order = Order.find(params[:id]) #edit had only had this line and an end in it
+    problem_products = @order.verify_inventory
+    if !problem_products.empty?
+      flash[:message] = "There are not enough of the following products in stock: #{problem_products}"
+      redirect_to orderedproducts_path
+    end
   end
 end
