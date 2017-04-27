@@ -15,6 +15,10 @@ class Orderedproduct < ApplicationRecord
     end
   end
 
+  def shipped
+    [true, false].sample
+    return false
+  end
 
   # assume only called on an array?
 

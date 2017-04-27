@@ -8,13 +8,13 @@ class Order < ApplicationRecord
     in: [ "pending", "paid", "shipped", "cancelled" ]
   }
 
-  validates :email, presence: true, on: :update
-  validates :mailing_address, presence: true, format: {with: /\A[a-zA-Z0-9]+\Z/}, on: :update
-  validates :name_on_cc, presence: true, format: {with: /\A[a-zA-Z]+\Z/}, on: :update
-  validates :cc_num, presence: true, numericality: { only_integer: true }, length: { is: 16 }, on: :update
-  validates :cc_exp, presence: true, numericality: { only_integer: true }, length: { is: 4 }, on: :update
-  validates :cc_csv, presence: true, numericality: { only_integer: true }, length: { minimum: 3, maximum: 4 }, on: :update
-  validates :zip_code, presence: true, numericality: { only_integer: true }, length: { is: 5 }, on: :update
+  # validates :email, presence: true, on: :update
+  # validates :mailing_address, presence: true, format: {with: /\A[a-zA-Z0-9]+\Z/}, on: :update
+  # validates :name_on_cc, presence: true, format: {with: /\A[a-zA-Z]+\Z/}, on: :update
+  # validates :cc_num, presence: true, numericality: { only_integer: true }, length: { is: 16 }, on: :update
+  # validates :cc_exp, presence: true, numericality: { only_integer: true }, length: { is: 4 }, on: :update
+  # validates :cc_csv, presence: true, numericality: { only_integer: true }, length: { minimum: 3, maximum: 4 }, on: :update
+  # validates :zip_code, presence: true, numericality: { only_integer: true }, length: { is: 5 }, on: :update
 
   def item_total
     orderedproducts.map { |op| op.quantity }.sum
@@ -23,8 +23,7 @@ class Order < ApplicationRecord
   def verify_inventory
     unavailable = []
     orderedproducts.each do |op|
-      product = Product.find_by(id: op.product_id)
-      unavailable << product.name if (op.quantity > product.inventory)
+      unavailable << op.product.name if (op.quantity > op.product.inventory)
     end
     return unavailable
   end
@@ -35,10 +34,9 @@ class Order < ApplicationRecord
     end
 
     orderedproducts.each do |op|
-      product = Product.find_by(id: op.product_id)
-      product.inventory -= op.quantity if operator == "-"
-      product.inventory += op.quantity if operator == "+"
-      product.save
+      op.product.inventory -= op.quantity if operator == "-"
+      op.product.inventory += op.quantity if operator == "+"
+      op.product.save
     end
   end
 
@@ -66,6 +64,4 @@ class Order < ApplicationRecord
     #   end
     # end
 
-    def products_for_merchant(merchant_id)
-    end
 end
