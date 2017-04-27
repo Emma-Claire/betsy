@@ -1,8 +1,8 @@
 <h1>Order Fulfillment</h1>
 
-<h5>Paid Orders (<%= @merchant_orders["paid"].count %>)|
-  Shipped Orders |
-  Cancelled Orders </h5>
+<h5>Paid Orders (<%= @merchant_orders["paid"].count %>) |
+  Shipped Orders (<%= @merchant_orders["shipped"].count %>) |
+  Cancelled Orders (<%= @merchant_orders["cancelled"].count %>)</h5>
 
 <p> Total revenue: </p>
 
@@ -10,18 +10,26 @@
   <section class="row orders">
     <h3><%= status.capitalize %> Orders (<%= orders.count %>)</h3>
     <ul>
-      <% orders.each do |order| %>
+      <% orders.each do |order_id, ops| %>
         <li>
-          <h5><%= "Order ##{order.id}" %></h5>
-          <p><%="Placed on #{order.created_at.strftime("%b %e, %Y")}"%>
-          <ul>
-            <% order.products.each do |product| %> # need op through order
-              <li>
-                <%= product.name %> x
-                <%= Orderedproduct.find(product_id: product.id, order_id: order.id).quantity %>
-              </li>
-            <% end %>
-          <ul>
+          <h5><%= "Order ##{order_id}" %></h5>
+          <p><%="Placed on #{Order.find_by(id: order_id).created_at.strftime("%b %e, %Y")}"%></p>
+          <p>Revenue: $<%=Order.find_by(id: order_id).total %></p>
+
+          <table>
+            <tbody>
+              <% ops.each do |op| %>
+                <tr>
+                  <td><%= op.product.name %> <%= image_tag op.product.photo_url, class: "product-image" %></td>
+                  <td><%= op.quantity %></td>
+                  <td><%= "x" %></td>
+                  <td>$<%= op.product.price %></td>
+                  <td>$<%= op.product.price * op.quantity %></td>
+                </tr>
+              <% end %>
+              <tr><td></td><td></td><td></td><td>Total: </td><td>$<%=Order.find_by(id: order_id).total %></td></tr>
+            </tbody>
+          </table>
         </li>
       <% end %>
     </ul>

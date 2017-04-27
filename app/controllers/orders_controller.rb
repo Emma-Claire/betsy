@@ -3,8 +3,7 @@ class OrdersController < ApplicationController
 
   def index
     merchant = Merchant.find_by(id: params[:merchant_id])
-    @merchant_orders = merchant.orders_by_status
-    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#{@orders}"
+    @merchant_orders = merchant.build_orders_hash
   end
 
   def show

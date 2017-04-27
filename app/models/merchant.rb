@@ -44,7 +44,7 @@ class Merchant < ApplicationRecord
     paid = orderedproducts.select { |op| op.order.status == "paid" && !op.shipped }
     shipped = orderedproducts.select { |op| op.order.status == "shipped" || op.shipped }
     cancelled = orderedproducts.select { |op| op.order.status == "cancelled" }
-    return { paid: paid, shipped: shipped, cancelled: cancelled }
+    return { "paid" => paid, "shipped" => shipped, "cancelled" => cancelled }
   end
 
   def build_orders_hash
