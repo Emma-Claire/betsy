@@ -35,7 +35,7 @@ category_constraints = {
   get 'orders/:id/edit', to: 'orders#edit', as: 'edit_order'
   post 'orders/:id/edit', to: 'orders#edit'
   patch 'orders/:id', to: 'orders#update'
-  get 'orders/:id/cancelled', to: 'orders#cancel_order', as: 'cancel_order'
+  patch 'orders/:id/cancelled', to: 'orders#cancel_order', as: 'cancel_order'
   patch 'orders/:id/shipped', to: 'orders#ship', as: 'ship_order'
 
   # orderedproduct routes
@@ -47,6 +47,8 @@ category_constraints = {
 
   patch 'orderedproducts/:id', to: 'orderedproducts#update', as: 'orderedproduct'
   delete 'orderedproducts/:id', to: 'orderedproducts#destroy'
+  # patch 'orderedproducts/:id/shipped', to: 'orderedproducts#ship', as: 'ship_orderedproducts'
+
   get "/auth/:provider/callback", to: "merchants#auth_callback", as: 'auth_callback'
   delete 'logout', to: 'merchants#destroy'
 end
