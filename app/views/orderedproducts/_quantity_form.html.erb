@@ -1,0 +1,9 @@
+<section class="quantity-form">
+  <%= form_for op, url: orderedproduct_path(op.id), method: :patch do |f| %>
+
+  <%= f.number_field :quantity, step: 1, in: 1..10, class: "update"  %>
+
+  <%= f.submit value: "Update", class: "button update"%>
+
+<% end %>
+</section>

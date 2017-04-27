@@ -12,7 +12,7 @@
     <ul>
       <% orders.each do |order_id, ops| %>
         <li>
-          <h5><%= "Order ##{order_id}" %></h5>
+          <h5><%= link_to "Order ##{order_id}", order_path(order_id) %></h5>
           <p><%="Placed on #{Order.find_by(id: order_id).created_at.strftime("%b %e, %Y")}"%></p>
 
           <%= render partial: "ops_table", locals: { headers: false, ops: ops } %>
