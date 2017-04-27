@@ -21,7 +21,9 @@ nav {
 }
 .cart{
   margin-top: 23px;
-  margin-left: 268px;
+  /*margin-left: 268px;*/
+  /*margin-top: 50px;*/
+  margin-left: 20%;
 }
 #navbar {
   display: block;
@@ -40,6 +42,7 @@ nav {
   background: url(../images/bullet.png) no-repeat 0 25px;
   z-index: 1;
   width: 120px;
+  margin: 1px;
 }
 
 #navbar h3 {
@@ -54,6 +57,36 @@ nav {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.shop {
+  display: inline-block;
+  border: 2px solid lightgray;
+  border-radius: 20px;
+  height: 300px;
+  width: 300px;
+  margin-top: 10%;
+  margin-left: 9%;
+  text-align: center;
+  padding-top: 10%;
+}
+
+.home_image {
+  width: 45%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+td img {
+  width: auto;
+  height: 25%;
+  /*display: block;*/
+  /*margin: 0 auto;*/
 }
 
 footer{

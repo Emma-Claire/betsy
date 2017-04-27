@@ -5,6 +5,7 @@
   <h3>
     Your cart is currently empty. <%= link_to "Continue Shopping", products_path %>
   </h3>
+
 <% else %>
   <%= render partial: "cart", locals: { ops: @ops } %>
   <%= link_to "Checkout", edit_order_path(@ops.first.order), class: "button" %>
