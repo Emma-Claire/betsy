@@ -15,44 +15,53 @@
 *= require foundation_and_overrides
 */
 nav {
-    z-index: 2;
-    position: relative;
-    clear: both;
+  z-index: 2;
+  position: relative;
+  clear: both;
+}
+.cart{
+  margin-top: 23px;
+  margin-left: 268px;
+}
+#navbar {
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  width: 1100px;
+  height: 57px;
+  font-size: 15px;
+  font-weight: bold;
 }
 
-#navbar {
-    display: block;
-    margin: 0 auto;
-    padding: 0;
-    list-style: none;
-    width: 1100px;
-    height: 57px;
-    font-size: 15px;
-    font-weight: bold;
-  }
+#navbar li {
+  float: left;
+  position: relative;
+  background: url(../images/bullet.png) no-repeat 0 25px;
+  z-index: 1;
+  width: 120px;
+}
 
-  #navbar li {
-    float: left;
-    position: relative;
-    background: url(../images/bullet.png) no-repeat 0 25px;
-    z-index: 1;
-    width: 120px;
-  }
-
-  #navbar h3 {
-    height: 47px;
-    padding: 10px 25px 0 25px;
-    color: #393f14;
-    font-weight: 800;
-    font-size: 15px;
-    line-height: 17px;
-    text-decoration: none;
-    display: block;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+#navbar h3 {
+  height: 47px;
+  padding: 10px 25px 0 25px;
+  color: #393f14;
+  font-weight: 800;
+  font-size: 15px;
+  line-height: 17px;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 footer{
-  background-color: black;
+  margin-top: 83px;
+  height: 217px;
+  border-top-width: 27px;
+  padding-top: 52px;
+  width: 1446px;
+  margin-bottom: 27px;
+  background-color: lightgray;
 }
