@@ -37,6 +37,7 @@ class OrdersController < ApplicationController
     @order = Order.find_by(id: params[:id])
     @order.status = "cancelled"
     if @order.save
+      @order.modify_inventory("+")
       flash[:message] = "Order successfully cancelled"
     else
       flash[:message] = "Unable to cancel order.  Please contact customer service."
