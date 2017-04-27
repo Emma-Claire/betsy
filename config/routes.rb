@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-root to: "products#index"
+root 'products#index'
 
 category_constraints = {
   category: /(air)|(tropical)|(succulents)|(cacti)|(herbs)|(trees)|(planters)/
@@ -36,6 +36,7 @@ category_constraints = {
   post 'orders/:id/edit', to: 'orders#edit'
   patch 'orders/:id', to: 'orders#update'
   get 'orders/:id/cancelled', to: 'orders#cancel_order', as: 'cancel_order'
+  patch 'orders/:id/shipped', to: 'orders#ship', as: 'ship_order'
 
   # orderedproduct routes
   get 'orderedproducts', to: 'orderedproducts#index', as: 'orderedproducts'

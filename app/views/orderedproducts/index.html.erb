@@ -5,29 +5,8 @@
   <h3>
     Your cart is currently empty. <%= link_to "Continue Shopping", products_path %>
   </h3>
-<% end %>
 
-
-<ul>
-  <% @ops.each do |op| %>
-    <li>
-      <%= Product.find_by(id: op.product_id).name %>
-      <p class="cart_image" ><%= image_tag Product.find_by(id: op.product_id).photo_url %></p>
-      Qty: <%= op.quantity %>
-      <section class="form">
-        <%= form_for op, url: orderedproduct_path(op.id), method: :patch do |f| %>
-        <%= f.label :quantity %>
-        <%= f.number_field :quantity, step: 1, in: 1..10  %>
-
-        <%= f.submit value: "Update QTY", class: "button"%>
-
-      <% end %>
-    </section>
-      <%= link_to "Remove from Cart", orderedproduct_path(op), method: :delete, data: {confirm: "Are you sure you want to delete this item?"}, class: "button alert" %>
-    </li>
-  <% end %>
-</ul>
-
-<% if !@ops.empty? %>
-  <%= link_to "Check Out", edit_order_path(@ops.first.order), class: "button" %>
+<% else %>
+  <%= render partial: "cart", locals: { ops: @ops } %>
+  <%= link_to "Checkout", edit_order_path(@ops.first.order), class: "button" %>
 <% end %>
