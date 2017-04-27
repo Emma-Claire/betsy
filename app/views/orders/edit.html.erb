@@ -5,16 +5,17 @@
     <table>
       <thead>
         <th>Product</th>
-        <th>Image</th>
         <th>Quantity</th>
         <th>Unit Price</th>
+        <th>Subtotal</th>
       </thead>
       <tbody>
         <% @order.orderedproducts.each do |op| %>
         <tr>
-          <td><%= Product.find_by(id: op.product_id).name %></td>
-          <td><%= image_tag Product.find_by(id: op.product_id).photo_url %></td>
+          <td><%= Product.find_by(id: op.product_id).name %> <%= image_tag Product.find_by(id: op.product_id).photo_url %></td>
+
           <td><%= op.quantity %></td>
+          <td>$<%= op.product.price %></td>
           <td>$<%= op.product.price * op.quantity %></td>
         </tr>
       <% end %>
@@ -22,7 +23,7 @@
   </table>
 </article>
 
-<h3>Grand Total: $</h3>
+<h3>Grand Total: $ <%= @order.total%></h3>
 
 <h3>Submit Billing Info and Place Your Order</h3>
 

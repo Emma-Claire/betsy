@@ -14,8 +14,8 @@ describe MerchantsController do
 
       merchant_data = {
         merchant: {
-            username: "jamie",
-            email: "jamie@domainname.org"
+          username: "jamie",
+          email: "jamie@domainname.org"
         }
       }
       post merchants_path, params: merchant_data
@@ -54,6 +54,20 @@ describe MerchantsController do
       ng_merchant_id = Merchant.last.id + 1
       get merchant_path(ng_merchant_id)
       must_respond_with :not_found
+    end
+  end
+
+  describe "auth_callback" do
+    it "should get create new session" do
+      get merchants_create_url
+      must_respond_with :success
+    end
+  end
+
+  describe "destroy (logged out)" do
+    it "should get logout" do
+      get merchants_logout_url
+      value(response).must_be :success?
     end
   end
 end
