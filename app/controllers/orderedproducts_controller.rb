@@ -30,7 +30,7 @@ class OrderedproductsController < ApplicationController
     else
       flash[:failure] = "Unable to add #{Product.find_by(id: op.product_id).name} to cart"
     end
-    redirect_to products_path
+    redirect_to orderedproducts_path
   end
 
   def edit
@@ -73,6 +73,17 @@ class OrderedproductsController < ApplicationController
     end
   end
 
+  # def ship
+  #
+  #   @order = Order.find_by(id: params[:id])
+  #   @order.status = "shipped"
+  #   if @order.save
+  #     flash[:message] = "Order successfully marked as shipped."
+  #   else
+  #     flash[:message] = "Unable to ship order at this time"
+  #   end
+  #   redirect_to
+  # end
 
 
   private
