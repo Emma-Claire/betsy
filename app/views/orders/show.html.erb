@@ -8,6 +8,18 @@
   <li>CC expiration date: <%= @order.cc_exp %></li>
 </ul>
 
+<h2>Your Final Order</h2>
+
+<article>
+  <%= render partial: "order_table" %>
+</article>
+
 <h3>Grand Total: $ <%= @order.total%></h3>
+
+<p>Order was placed:  <%= @order.updated_at %><p>
+
+<p>Current status of your order: <%= @order.status.upcase%> </p>
+
+<p>Please print this for your records.</p>
 
 <p> Feeling Buyer's Remorse? </p><%= link_to "Cancel Order", cancel_order_path, class: "button alert" %>

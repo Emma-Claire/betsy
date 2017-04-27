@@ -12,7 +12,7 @@
   <% @ops.each do |op| %>
     <li>
       <%= Product.find_by(id: op.product_id).name %>
-      <%= image_tag Product.find_by(id: op.product_id).photo_url %>
+      <p class="cart_image" ><%= image_tag Product.find_by(id: op.product_id).photo_url %></p>
       Qty: <%= op.quantity %>
       <section class="form">
         <%= form_for op, url: orderedproduct_path(op.id), method: :patch do |f| %>
