@@ -39,10 +39,21 @@ class OrdersController < ApplicationController
       @order.modify_inventory("+")
       flash[:message] = "Order successfully cancelled"
     else
-      flash[:message] = "Unable to cancel order.  Please contact customer service."
+      flash[:message] = "Unable to cancel order. Please contact customer service."
     end
     redirect_to products_path
     # patch changes order status from paid to cancelled
+  end
+
+  def ship
+    @order = Order.find_by(id: params[:id])
+    @order.status = "shipped"
+    if @order.save
+      flash[:message] = "Order successfully marked as shipped."
+    else
+      flash[:message] = "Unable to ship order at this time"
+    end
+    redirect_to
   end
 
 private

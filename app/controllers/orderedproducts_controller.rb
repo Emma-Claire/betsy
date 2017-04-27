@@ -30,7 +30,7 @@ class OrderedproductsController < ApplicationController
     else
       flash[:failure] = "Unable to add #{Product.find_by(id: op.product_id).name} to cart"
     end
-    redirect_to orderedproducts_path#product_path(Product.find(params[:product_id]))
+    redirect_to products_path
   end
 
   def edit

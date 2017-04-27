@@ -20,6 +20,10 @@ class Orderedproduct < ApplicationRecord
     return false
   end
 
+  def subtotal
+    '%.2f' % (product.price * quantity)
+  end
+
   # assume only called on an array?
 
 end
