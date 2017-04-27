@@ -6,7 +6,7 @@ aloe:
   category: air
   description: Aloe vera is a plant species of the genus Aloe. It grows wild in tropical climates around the world and is cultivated for agricultural and medicinal uses. Aloe is also used for decorative purposes and grows successfully indoors as a potted plant.
   inventory: 1
-  photo_url: MyString
+  photo_url: planter2.jpg #change this to a photo from file
   merchant: alice
 
 century:
@@ -15,7 +15,7 @@ century:
   category: tropical
   description: MyText
   inventory: 1
-  photo_url: MyString
+  photo_url: planter3.jpg
   merchant: sally
 
 goethe:
@@ -24,7 +24,7 @@ goethe:
   category: succulents
   description: Aloe vera is a plant species of the genus Aloe. It grows wild in tropical climates around the world and is cultivated for agricultural and medicinal uses. Aloe is also used for decorative purposes and grows successfully indoors as a potted plant.
   inventory: 1
-  photo_url: MyString
+  photo_url: planter4.jpg
   merchant: alice
 
 Cacti:
@@ -33,7 +33,7 @@ Cacti:
   category: cacti
   description: MyText
   inventory: 1
-  photo_url: MyString
+  photo_url: planter5.jpg
   merchant: sally
 
 Herbs:
@@ -42,7 +42,7 @@ Herbs:
   category: herbs
   description: MyText
   inventory: 1
-  photo_url: MyString
+  photo_url: planter6.jpg
   merchant: sally
 
 IndoorTrees:
@@ -51,7 +51,7 @@ IndoorTrees:
   category: trees
   description: MyText
   inventory: 1
-  photo_url: MyString
+  photo_url: planter8.jpg
   merchant: sally
 
 Planter:
@@ -60,5 +60,5 @@ Planter:
   category: planters
   description: MyText
   inventory: 1
-  photo_url: MyString
+  photo_url: planter10.jpg
   merchant: sally

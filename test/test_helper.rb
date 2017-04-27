@@ -23,9 +23,12 @@ Minitest.backtrace_filter
 
 class ActiveSupport::TestCase
   fixtures :all
+<<<<<<< HEAD
+=======
 
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
+>>>>>>> 43b97ab6007c4bfff80a62dab5ca57c0a27d24c7
   # Add more helper methods to be used by all tests here...
 
   def setup
@@ -33,7 +36,7 @@ class ActiveSupport::TestCase
     OmniAuth.config.test_mode = true
   end
 
-  def mock_auth_hash(merchant)
+  def mock_auth_hash(user)
     return {
       provider: user.oauth_provider,
       uid: user.oauth_uid,
