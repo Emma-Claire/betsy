@@ -54,8 +54,8 @@ class OrdersController < ApplicationController
     else
       flash[:message] = "Unable to cancel order.  Please contact customer service."
     end
-    
-    patch changes order status from paid to cancelled
+    redirect_to products_path
+    # patch changes order status from paid to cancelled
   end
 
 private
