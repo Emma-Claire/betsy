@@ -6,13 +6,21 @@ alice:
   username: alice
   email: alice@domainname.org
 
-
 sally:
   oauth_provider: github
   oauth_uid: 12345
   username: sally
   email: sally@domainname.org
 
+<<<<<<< HEAD
+sally:
+  oauth_provider: github
+  oauth_uid: 12345
+  username: sally
+  email: sally@domainname.org
+
+=======
+>>>>>>> 43b97ab6007c4bfff80a62dab5ca57c0a27d24c7
 alex:
   oauth_provider: github
   oauth_uid: 123455

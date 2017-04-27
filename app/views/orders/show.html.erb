@@ -9,3 +9,5 @@
 </ul>
 
 <h3>Grand Total: $ <%= @order.total%></h3>
+
+<p> Feeling Buyer's Remorse? </p><%= link_to "Cancel Order", cancel_order_path, class: "button alert" %>

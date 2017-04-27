@@ -1,28 +1,28 @@
 <%= form_for @order do |f| %>
-  <%= f.label :Email_Address %>
+  <%= f.label "Email Address" %>
   <%= f.text_field :email %>
 
-  <%= f.label :Mailing_Address %>
+  <%= f.label "Mailing Address" %>
   <%= f.text_field :mailing_address %>
 
-  <%= f.label :Name_on_Credit_Card %>
+  <%= f.label "Name on Credit Card" %>
   <%= f.text_field :name_on_cc %>
 
-  <%= f.label :Credit_Card_Number %>
+  <%= f.label "Last 4 Digits of Your Credit Card" %>
   <%= f.text_field :cc_num %>
 
-  <%= f.label :Credit_Card_Expiration_Date %>
+  <%= f.label "Credit Card Expiration Date" %>
   <%= f.text_field :cc_exp%>
 
-  <%= f.label :Credit_Card_CSV %>
+  <%= f.label "Credit Card CSV" %>
   <%= f.text_field :cc_csv %>
 
-  <%= f.label :Zip_Code %>
+  <%= f.label "Zip Code" %>
   <%= f.text_field :zip_code %>
 
   <%= f.hidden_field :status, value: "paid" %>
 
-  <%= f.submit value: "Place Order", class: "button alert", data: { confirm: "Are you sure you want to charge **$$Total** your card for this order?" } %>
+  <%= f.submit value: "Place Order", class: "button alert", data: { confirm: "Are you sure you want to charge $#{@order.total} your card for this order?" } %>
 
   <% end %>
 

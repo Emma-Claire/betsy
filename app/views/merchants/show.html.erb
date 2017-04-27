@@ -12,14 +12,16 @@
 <h3><%= link_to "Add new products", new_product_path %></h3>
 
 <% @merchant.products.each do |product| %>
-<ul>
+<ul class="row">
+  <section class="column">
   <li><%= link_to "#{product.name}", product_path(product.id) %></li>
   <li><%= image_tag product.photo_url %></li>
   <li><%= product.category%></li>
+  </section>
 </ul>
 
 <div>
   <%= link_to "Edit", edit_product_path(product.id) %>
-  <%= link_to "Retire", product_path(product.id), method: :delete %>
+  <%= link_to "Retire", product_path(product.id), method: :delete, data: { confirm: "Are you sure you want to retire this product?" }%>
 </div>
 <% end %>
