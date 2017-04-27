@@ -33,7 +33,19 @@ class OrdersController < ApplicationController
       end
   end
 
-  private
+  def cancel_order
+    @order = Order.find_by(id: params[:id])
+    @order.status = "cancelled"
+    if @order.save
+      flash[:message] = "Order successfully cancelled"
+    else
+      flash[:message] = "Unable to cancel order.  Please contact customer service."
+    end
+    redirect_to products_path
+    # patch changes order status from paid to cancelled
+  end
+
+private
   def order_params
     params.require(:order).permit(:status, :email, :mailing_address, :name_on_cc, :cc_num, :cc_exp, :cc_csv, :zip_code)
   end
