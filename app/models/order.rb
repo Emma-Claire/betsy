@@ -15,7 +15,6 @@ class Order < ApplicationRecord
   validates :cc_csv, presence: true, numericality: { only_integer: true }, length: { in: 3..4 }, on: :update
   validates :zip_code, presence: true, numericality: { only_integer: true }, length: { is: 5 }, on: :update
 
-
   def item_total
     orderedproducts.map { |op| op.quantity }.sum
   end
@@ -29,6 +28,18 @@ class Order < ApplicationRecord
     return unavailable
   end
 
+  def modify_inventory(operator)
+    unless operator == "-" || operator == "+"
+      raise ArgumentError.new("Can only increase or decrease inventory")
+    end
+
+    orderedproducts.each do |op|
+      product = Product.find_by(id: op.product_id)
+      product.inventory -= op.quantity if operator == "-"
+      product.inventory += op.quantity if operator == "+"
+      product.save
+    end
+  end
 
   def total
     t = 0
@@ -37,5 +48,4 @@ class Order < ApplicationRecord
     end
     return t.round(2)
   end
-
 end
