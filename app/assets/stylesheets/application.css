@@ -54,5 +54,10 @@ nav {
 }
 
 footer{
-  background-color: black;
+  margin-top: 83px;
+    height: 217px;
+    border-top-width: 27px;
+    padding-top: 52px;
+    width: 1446px;
+    margin-bottom: 27px;
 }
