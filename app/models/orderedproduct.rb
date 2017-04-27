@@ -15,6 +15,14 @@ class Orderedproduct < ApplicationRecord
     end
   end
 
+  def shipped
+    [true, false].sample
+    return false
+  end
+
+  def subtotal
+    '%.2f' % (product.price * quantity)
+  end
 
   # assume only called on an array?
 

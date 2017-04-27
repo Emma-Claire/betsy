@@ -1,0 +1,25 @@
+<section>
+  <table>
+    <% if headers == true %>
+      <thead>
+        <th>Product</th>
+        <th>Unit Price</th>
+        <th></th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+      </thead>
+    <% end %>
+    <tbody>
+      <% ops.each do |op| %>
+        <tr>
+          <td><%= op.product.name %> <%= image_tag op.product.photo_url, class: "product-image" %></td>
+          <td>$<%= op.product.price %></td>
+          <td><%= "x" %></td>
+          <td><%= op.quantity %></td>
+          <td>$<%= op.subtotal %></td>
+        </tr>
+      <% end %>
+      <tr><td></td><td></td><td></td><td class="total">Total: </td><td class="total"><%= "$#{ops.first.order.total}" %></td></tr>
+    </tbody>
+  </table>
+</section>

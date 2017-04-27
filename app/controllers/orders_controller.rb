@@ -2,9 +2,8 @@ class OrdersController < ApplicationController
   before_action :place_order?, only: [:edit, :update]
 
   def index
-    orders = Merchant.find_by(id: params[:merchant_id]).find_orders
-    # any way to move this logic into the model? -> add keys for paid, pending, and shipped
-    @orders = orders.group_by { |order| order.status }
+    merchant = Merchant.find_by(id: params[:merchant_id])
+    @merchant_orders = merchant.build_orders_hash
   end
 
   def show
@@ -40,10 +39,21 @@ class OrdersController < ApplicationController
       @order.modify_inventory("+")
       flash[:message] = "Order successfully cancelled"
     else
-      flash[:message] = "Unable to cancel order.  Please contact customer service."
+      flash[:message] = "Unable to cancel order. Please contact customer service."
     end
     redirect_to products_path
     # patch changes order status from paid to cancelled
+  end
+
+  def ship
+    @order = Order.find_by(id: params[:id])
+    @order.status = "shipped"
+    if @order.save
+      flash[:message] = "Order successfully marked as shipped."
+    else
+      flash[:message] = "Unable to ship order at this time"
+    end
+    redirect_to
   end
 
 private
