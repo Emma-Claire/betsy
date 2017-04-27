@@ -17,16 +17,15 @@ class OrdersController < ApplicationController
       @order.update_attributes(order_params)
       if @order.save
         @order.modify_inventory("-")
-        flash[:status] = :success
         flash[:result_text] = "Your order is complete!"
         if session[:order_id]
           session[:order_id] = nil
         end
         # need to update this path once we know where we want it to go
-        redirect_to order_path
+        # redirect_to order_path
+        render :summary
       else
-        flash.now[:status] = :failure
-        flash.now[:result_text] = "Could not update your order (order id: #{@order_id})"
+        flash.now[:result_text] = "Unable to place your order. Please try again."
         flash.now[:messages] = @order.errors.messages
         render :edit, status: :not_found
       end
