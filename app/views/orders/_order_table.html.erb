@@ -1,0 +1,20 @@
+    <table>
+      <thead>
+        <th>Product</th>
+        <th></th>
+        <th>Quantity</th>
+        <th>Unit Price</th>
+        <th>Subtotal</th>
+      </thead>
+      <tbody>
+        <% @order.orderedproducts.each do |op| %>
+        <tr>
+          <td><%= link_to Product.find_by(id: op.product_id).name, product_path %></td>
+          <td><%= image_tag Product.find_by(id: op.product_id).photo_url %></td>
+          <td><%= op.quantity %></td>
+          <td>$<%= op.product.price %></td>
+          <td>$<%= op.product.price * op.quantity %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
