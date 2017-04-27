@@ -35,6 +35,7 @@ category_constraints = {
   get 'orders/:id/edit', to: 'orders#edit', as: 'edit_order'
   post 'orders/:id/edit', to: 'orders#edit'
   patch 'orders/:id', to: 'orders#update'
+  patch 'orders/:id/cancelled', to: 'orders#cancelled', as: 'cancel_order'
 
   # orderedproduct routes
   get 'orderedproducts', to: 'orderedproducts#index', as: 'orderedproducts'

@@ -15,6 +15,7 @@ class Order < ApplicationRecord
   validates :cc_csv, presence: true, numericality: { only_integer: true }, length: { minimum: 3, maximum: 4 }, on: :update
   validates :zip_code, presence: true, numericality: { only_integer: true }, length: { is: 5 }, on: :update
 
+
   def item_total
     orderedproducts.map { |op| op.quantity }.sum
   end
