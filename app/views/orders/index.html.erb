@@ -14,22 +14,9 @@
         <li>
           <h5><%= "Order ##{order_id}" %></h5>
           <p><%="Placed on #{Order.find_by(id: order_id).created_at.strftime("%b %e, %Y")}"%></p>
-          <p>Revenue: $<%=Order.find_by(id: order_id).total %></p>
 
-          <table>
-            <tbody>
-              <% ops.each do |op| %>
-                <tr>
-                  <td><%= op.product.name %> <%= image_tag op.product.photo_url, class: "product-image" %></td>
-                  <td><%= op.quantity %></td>
-                  <td><%= "x" %></td>
-                  <td>$<%= op.product.price %></td>
-                  <td>$<%= op.subtotal %></td>
-                </tr>
-              <% end %>
-              <tr><td></td><td></td><td></td><td class="total">Total: </td><td class="total"><%= "$#{Order.find_by(id: order_id).total}" %></td></tr>
-            </tbody>
-          </table>
+          <%= render partial: "ops_table", locals: { headers: false, ops: ops } %>
+
           <% if status == "paid" %>
             <%= link_to "Ship", ship_order_path(order_id), method: :patch, class: "button" %>
           <% end %>
