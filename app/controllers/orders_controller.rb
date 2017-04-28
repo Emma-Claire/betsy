@@ -1,9 +1,10 @@
+require 'ap'
 class OrdersController < ApplicationController
   before_action :place_order?, only: [:edit, :update]
 
   def index
-    merchant = Merchant.find_by(id: params[:merchant_id])
-    @merchant_orders = merchant.build_orders_hash
+    @merchant = Merchant.find_by(id: params[:merchant_id])
+    @merchant_orders = @merchant.build_orders_hash
   end
 
   def show
@@ -17,6 +18,7 @@ class OrdersController < ApplicationController
       @order.update_attributes(order_params)
       if @order.save
         @order.modify_inventory("-")
+        flash[:status] = :success
         flash[:result_text] = "Your order is complete!"
         if session[:order_id]
           session[:order_id] = nil
@@ -25,6 +27,7 @@ class OrdersController < ApplicationController
         # redirect_to order_path
         render :summary
       else
+        flash[:status] = :failure
         flash.now[:result_text] = "Unable to place your order. Please try again."
         flash.now[:messages] = @order.errors.messages
         render :edit, status: :not_found
@@ -36,23 +39,28 @@ class OrdersController < ApplicationController
     @order.status = "cancelled"
     if @order.save
       @order.modify_inventory("+")
-      flash[:message] = "Order successfully cancelled"
+      flash[:status] = :success
+      flash[:result_text] = "Order successfully cancelled"
     else
-      flash[:message] = "Unable to cancel order. Please contact customer service."
+      flash[:status] = :failure
+      flash[:result_text] = "Unable to cancel order. Please contact customer service."
     end
     redirect_to products_path
     # patch changes order status from paid to cancelled
   end
 
   def ship
-    @order = Order.find_by(id: params[:id])
-    @order.status = "shipped"
-    if @order.save
+    order = Order.find_by(id: params[:id])
+
+    result = order.mark_ops_shipped(params[:merchant_id].to_i)
+    order.status = "shipped" if order.all_shipped?
+
+    if result && order.save
       flash[:message] = "Order successfully marked as shipped."
     else
-      flash[:message] = "Unable to ship order at this time"
+      flash[:message] = "Unable to ship order at this time."
     end
-    redirect_to
+    redirect_to merchant_orders_path(params[:merchant_id])
   end
 
 private

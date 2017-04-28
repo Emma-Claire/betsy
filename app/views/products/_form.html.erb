@@ -1,16 +1,4 @@
-<% if @product.errors.messages.length > 0 %>
-<h2> Something wrong! </h2>
-<ul>
-  <% @product.errors.messages.each do |field, problem_list| %>
-  <% problem_list.each do |problem| %>
-  <li>
-    <%= field %>:
-    <%= problem %>
-  </li>
-    <% end %>
-  <% end %>
-</ul>
-<% end %>
+
 
 <section class= 'form'>
 <%= form_for @product do |f| %>

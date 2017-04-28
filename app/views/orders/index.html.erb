@@ -1,24 +1,34 @@
 <h1>Order Fulfillment</h1>
 
-<h5>Paid Orders (<%= @merchant_orders["paid"].count %>) |
-  Shipped Orders (<%= @merchant_orders["shipped"].count %>) |
-  Cancelled Orders (<%= @merchant_orders["cancelled"].count %>)</h5>
+<h3 class="total"> Total revenue: $<%= @merchant.total_revenue%></h3>
 
-<p> Total revenue: </p>
+<nav>
+  <h5> <%= link_to "Paid Orders", anchor: "paid" %>
+    (<%= @merchant_orders["paid"].count %>) |
+    <%= link_to "Shipped Orders", anchor: "shipped" %>
+    (<%= @merchant_orders["shipped"].count %>) |
+    <%= link_to "Cancelled Orders", anchor: "cancelled" %>
+    (<%= @merchant_orders["cancelled"].count %>)
+  </h5>
+</nav>
 
 <% @merchant_orders.each do |status, orders| %>
-  <section class="row orders">
-    <h3><%= status.capitalize %> Orders (<%= orders.count %>)</h3>
+  <%= "<section class='row orders', id=#{status}".html_safe %>
+  </svg>
+    <h3><%= status.capitalize %> Orders</h3>
     <ul>
       <% orders.each do |order_id, ops| %>
-        <li>
-          <h5><%= link_to "Order ##{order_id}", order_path(order_id) %></h5>
-          <p><%="Placed on #{Order.find_by(id: order_id).created_at.strftime("%b %e, %Y")}"%></p>
+        <li class="order">
+          <h5><%= link_to "Order ##{order_id}", order_path(order_id) %> ⏤
+            <span class="smaller">
+              <%= Order.find_by(id: order_id).created_at.strftime("%b %e, %Y") %>
+            </span>
+          </h5>
 
-          <%= render partial: "ops_table", locals: { headers: false, ops: ops } %>
+          <%= render partial: "ops_table", locals: { headers: false, ops: ops, merchant_id: @merchant.id } %>
 
           <% if status == "paid" %>
-            <%= link_to "Ship", ship_order_path(order_id), method: :patch, class: "button" %>
+            <%= link_to "Ship", merchant_ship_order_path(@merchant.id, order_id), method: :patch, class: "button" %>
           <% end %>
         </li>
       <% end %>
