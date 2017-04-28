@@ -1,13 +1,22 @@
 class OrdersController < ApplicationController
   before_action :place_order?, only: [:edit, :update]
+  before_action :require_login, only: [:index, :show, :ship]
 
   def index
     @merchant = Merchant.find_by(id: params[:merchant_id])
-    @merchant_orders = @merchant.build_orders_hash
+    if @merchant.id != @current_user.id
+      restrict_permission
+    else
+      @merchant_orders = @merchant.build_orders_hash
+    end
   end
 
   def show
     @order = Order.find_by(id: params[:id])
+    order_merchants = @order.products.map { |product| product.merchant.id}
+    if !order_merchants.include? @current_user.id
+      restrict_permission
+    end
   end
 
   def edit
@@ -22,8 +31,6 @@ class OrdersController < ApplicationController
         if session[:order_id]
           session[:order_id] = nil
         end
-        # need to update this path once we know where we want it to go
-        # redirect_to order_path
         render :summary
       else
         flash[:status] = :failure
@@ -71,11 +78,18 @@ private
 
   def place_order?
     @order = Order.find(params[:id])
+    restrict_permission if @order.status != "pending"
     problem_products = @order.verify_inventory
     if !problem_products.empty?
       flash[:status] = :failure
       flash[:result_text] = "There are not enough of the following products in stock: #{problem_products}"
       redirect_to orderedproducts_path
     end
+  end
+
+  def restrict_permission
+    flash[:status] = :failure
+    flash[:result_text] = 'You do not have permission to view that page'
+    redirect_to products_path
   end
 end

@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
     # @product.retired = false
 
     if @product.save
-      redirect_to merchant_path(@merchant.id)
+      redirect_to all_products_path
     else
       render :new, status: :bad_request
     end
@@ -43,7 +43,7 @@ class ProductsController < ApplicationController
     else
       @product.update_attributes(product_params)
       if @product.save
-        redirect_to product_path(@product.id)
+        redirect_to all_products_path
       else
         render :edit, status: :bad_request
       end

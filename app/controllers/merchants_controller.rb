@@ -1,5 +1,5 @@
 class MerchantsController < ApplicationController
-  # before_action :require_login, only: [:show]
+  before_action :require_login, only: [:all_products]
 
   def index
     @merchants = Merchant.all
@@ -65,9 +65,8 @@ class MerchantsController < ApplicationController
   end
 
   def all_products
-    lookup_user
+    require_login
     @merchant = Merchant.find_by(id: @current_user.id)
-    puts ">>>>>>>>>>>>>>>>>> @merchant"
     render :all_products
   end
 
