@@ -8,6 +8,13 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find_by(id: params[:id])
+    lookup_user
+
+    if !@current_user.nil? && @product.merchant.id == @current_user.id
+      render :show
+    elsif @product.retired || @product.inventory < 1
+      restrict_permission 
+    end
   end
 
   def new
@@ -19,7 +26,6 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     lookup_user
     @product.merchant_id = @current_user.id
-    # @product.retired = false
 
     if @product.save
       redirect_to merchants_path
