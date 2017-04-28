@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :require_login, except: [:index, :show]
 
   def index
     @category = params[:category]
@@ -19,7 +20,6 @@ class ProductsController < ApplicationController
     lookup_user
     @product.merchant_id = @current_user.id
     # @product.retired = false
-
 
     if @product.save
       redirect_to products_path

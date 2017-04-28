@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  before_action :lookup_user
+  # before_action :lookup_user
 
   private
   def lookup_user
@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     if @current_user.nil?
       flash[:status] = :failure
       flash[:result_text] = 'You must be logged in to see that page.'
-      redirect_to products_path
+      redirect_to merchants_path
     end
   end
 

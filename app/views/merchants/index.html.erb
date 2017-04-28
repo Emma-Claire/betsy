@@ -7,6 +7,7 @@
         <% if merchant.products.first != nil %>
         <li class="shop"> <%= link_to merchant.username, merchant_path(merchant.id) %>'s Plantsy Shop
           <p class="home_image"><%= image_tag merchant.products.first.photo_url %></p>
+          <p>$<%= link_to merchant.products.first.price %> each</p>
         <% end %>
         </li>
       </ul>
