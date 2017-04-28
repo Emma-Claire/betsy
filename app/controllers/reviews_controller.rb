@@ -6,7 +6,9 @@ class ReviewsController < ApplicationController
     if lookup_user.id == @product.merchant_id
       flash.now[:status] = :failure
       flash.now[:result_text] = "You cannot review your own product"
-      render :product_path, status: :bad_request
+    
+     render :new, status: :bad_request
+
     end
   end
 

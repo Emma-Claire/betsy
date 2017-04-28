@@ -15,6 +15,8 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    lookup_user
+    @product.merchant_id = @current_user.id
     # @product.retired = false
 
 
