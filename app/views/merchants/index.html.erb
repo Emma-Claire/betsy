@@ -4,7 +4,11 @@
   <% @merchants.each do |merchant| %>
     <div class="large-4 columns">
       <ul>
-        <li class="shop"> <%= link_to merchant.username, merchant_path(merchant.id) %>'s Plantsy Shop</li>
+        <% if merchant.products.first != nil %>
+        <li class="shop"> <%= link_to merchant.username, merchant_path(merchant.id) %>'s Plantsy Shop
+          <p class="home_image"><%= image_tag merchant.products.first.photo_url %></p>
+        <% end %>
+        </li>
       </ul>
     </div>
     <% end %>
