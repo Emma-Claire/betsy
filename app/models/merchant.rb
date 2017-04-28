@@ -15,31 +15,6 @@ class Merchant < ApplicationRecord
     return user
   end
 
-  # def find_orders
-  #   orders = []
-  #   products.each do |product|
-  #     product.orders.each do |order|
-  #       orders << order if order.status != "pending"
-  #     end
-  #   end
-  #   orders.uniq
-  #   # orders = products.collect{ |product| product.orders }
-  #   # orders.flatten.uniq
-  #   # orderedproducts.each do |op|
-  #   #   order = op.order
-  #   #   orders[order.id] += op if order.status != "pending"
-  #   #
-  #   # end
-  # end
-  #
-  # def orders_by_status
-  #   @orders = find_orders.group_by { |order| order.status }
-  #   ["paid", "shipped", "cancelled"].each do |status|
-  #     @orders[status] = [] if !@orders.keys.include? status
-  #   end
-  #   return @orders
-  # end
-
   def orderedproducts_by_status
     paid = orderedproducts.select { |op| op.order.status == "paid" && !op.shipped }
     shipped = orderedproducts.select { |op| op.order.status == "shipped" || op.shipped }
