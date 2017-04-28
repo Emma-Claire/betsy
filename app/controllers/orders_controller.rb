@@ -1,4 +1,3 @@
-# require 'ap'
 class OrdersController < ApplicationController
   before_action :place_order?, only: [:edit, :update]
 
@@ -56,9 +55,11 @@ class OrdersController < ApplicationController
     order.status = "shipped" if order.all_shipped?
 
     if result && order.save
-      flash[:message] = "Order successfully marked as shipped."
+      flash[:status] = :success
+      flash[:result_text] = "Order successfully marked as shipped."
     else
-      flash[:message] = "Unable to ship order at this time."
+      flash[:status] = :failure
+      flash[:result_text] = "Unable to ship order at this time."
     end
     redirect_to merchant_orders_path(params[:merchant_id])
   end
@@ -72,7 +73,8 @@ private
     @order = Order.find(params[:id])
     problem_products = @order.verify_inventory
     if !problem_products.empty?
-      flash[:message] = "There are not enough of the following products in stock: #{problem_products}"
+      flash[:status] = :failure
+      flash[:result_text] = "There are not enough of the following products in stock: #{problem_products}"
       redirect_to orderedproducts_path
     end
   end

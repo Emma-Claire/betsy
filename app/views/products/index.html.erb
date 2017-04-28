@@ -7,7 +7,8 @@
       <li class="shop">
       <p><%= link_to product.name, product_path(product.id) %></p>
       <p class="home_image"><%=  image_tag product.photo_url %></p>
-      <p><%= link_to product.name, product_path(product.id) %></p>
+      <p>$<%= link_to product.price %> each</p>
+
     </li>
   </ul>
   </div>

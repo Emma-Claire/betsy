@@ -15,11 +15,15 @@ category_constraints = {
     patch 'orders/:id/ship', to: 'orders#ship', as: 'ship_order'
   end
 
+  get 'merchants/products/all', to:'merchants#all_products', as: 'all_products'
+
   get 'products(/:category)', to: 'products#index', as: 'products', constraints: category_constraints
 
   resources :products, except: [:index] do
     resources :reviews, only: [:new, :create, :show]
   end
+
+
 
   resources :orders, only: [:show, :edit, :update]
   #

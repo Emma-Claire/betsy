@@ -1,32 +1,15 @@
 <h1> <%= @merchant.username %>'s Plantsy Shop</h1>
 
-<!-- # <h3>Orders</h3>
-# <%= @merchant.products.each do |product| %>
-#   <%= product.orders.each do |order| %>
-#     <ul>
-#       <li>product:<%= product.name %><%= order.status %> </li>
-#     </ul>
-#   <% end %>
-# <% end %> -->
-
-<h3><%= link_to "Add new products", new_product_path %></h3>
-
 <section class="row">
-  <% @merchant.products.each do |product| %>
+  <% @products.each do |product| %>
   <div class="large-2 columns">
     <ul>
       <li class="shop">
+        <% if product.retired == false %>
         <p><%= link_to "#{product.name}", product_path(product.id) %></p>
         <p class="home_image"><%= image_tag product.photo_url %></p>
-        <p><%= product.category%></p>
-            <p><%= link_to "Edit", edit_product_path(product.id), class: "button" %></p>
-            <p>
-              <% if !product.retired %>
-                <%= link_to "Retire", product_path(product.id),
-                method: :delete, class: "button",
-                data: { confirm: "Are you sure you want to retire this product?" }%>
-              <% end %>
-          </p>
+        <p>$<%= link_to product.price %> each</p>
+          <% end %>
         </li>
       </ul>
   </div>
