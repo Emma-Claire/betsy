@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-root 'products#index'
+root 'products#index_9'
 
 category_constraints = {
   category: /(air)|(tropical)|(succulents)|(cacti)|(herbs)|(trees)|(planters)/
