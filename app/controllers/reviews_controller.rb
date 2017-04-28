@@ -8,7 +8,6 @@ class ReviewsController < ApplicationController
       flash[:result_text] = "You cannot review your own product"
 
      redirect_to product_path(@product.id)
-
     end
   end
 

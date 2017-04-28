@@ -27,7 +27,6 @@ class Product < ApplicationRecord
   def avg_rating
     ratings = reviews.map { | review | review.rating }
     '%.1f' % (ratings.sum.to_f / ratings.count) # to one decimal point
-    # ('%.1f' % avg)
   end
 
   private

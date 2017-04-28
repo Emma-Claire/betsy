@@ -52,7 +52,6 @@ class OrdersController < ApplicationController
       flash[:result_text] = "Unable to cancel order. Please contact customer service."
     end
     redirect_to products_path
-    # patch changes order status from paid to cancelled
   end
 
   def ship
@@ -86,10 +85,4 @@ private
       redirect_to orderedproducts_path
     end
   end
-  # 
-  # def restrict_permission
-  #   flash[:status] = :failure
-  #   flash[:result_text] = 'You do not have permission to view that page'
-  #   redirect_to products_path
-  # end
 end

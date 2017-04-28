@@ -1,19 +1,8 @@
 class OrderedproductsController < ApplicationController
 
-# before_action :require_login, only: [:show]
-
   def index
     find_order
     @ops = Orderedproduct.where(order: @order)
-    # @items
-    # message = ""
-    # @ops.each do |op|
-    #   message += check_stock(op.product_id, op.quantity, op.product.name).to_s
-    #   message += "\n"
-    # end
-    # if message.present?
-    #   flash[:warning] = message
-    # end
   end
 
   def create
@@ -36,23 +25,11 @@ class OrderedproductsController < ApplicationController
     redirect_to orderedproducts_path
   end
 
-  # def edit
-  #   find_order
-  #
-  #   @op = Orderedproduct.find_by(id: params[:id], order_id: @order.id)
-  #
-  #   if @op.nil?
-  #     head :not_found
-  #   end
-  # end
-
   def update
     find_order
     @op = Orderedproduct.find_by(id: params[:id], order_id: @order.id)
     @op.update_attributes(op_params)
 
-    # if !@op.check_inventory
-    #   flash[:failure] = "You may only add up to #{@op.product.inventory} of this item to your cart"
     if @op.save
       flash[:status] = :success
       flash[:result_text] = "Successfully updated item quantity"
@@ -62,7 +39,6 @@ class OrderedproductsController < ApplicationController
       flash[:result_text] = "Unable to add item to cart"
       flash[:message] = @op.errors.messages
       redirect_to orderedproducts_path
-      #, status: :not_found  #redirect
     end
   end
 
@@ -79,26 +55,7 @@ class OrderedproductsController < ApplicationController
     end
   end
 
-  # def ship
-  #
-  #   @order = Order.find_by(id: params[:id])
-  #   @order.status = "shipped"
-  #   if @order.save
-  #     flash[:message] = "Order successfully marked as shipped."
-  #   else
-  #     flash[:message] = "Unable to ship order at this time"
-  #   end
-  #   redirect_to
-  # end
-
-
   private
-
-  # def check_stock(id, quantity, name)
-  #   if !Product.in_stock?(id, quantity)
-  #     "\n\nSorry! There are not enough #{name}'s' to fulfill your order."
-  #   end
-  # end
 
   def op_params
     return params.require(:orderedproduct).permit(:quantity)
@@ -110,13 +67,7 @@ class OrderedproductsController < ApplicationController
   end
 
   def find_order
-    # unless session[:user_id].nil?
       @order = Order.find_by(id: session[:order_id])
-    # end
-    # puts ">>>>>>>>>>>>>>>>>#{session[:order_id]}|| #{@order.id}"
-    # if @order.nil?
-    #   start_new_order
-    # end
   end
 
 end
