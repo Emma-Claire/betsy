@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
     if !@current_user.nil? && @product.merchant.id == @current_user.id
       render :show
     elsif @product.retired || @product.inventory < 1
-      restrict_permission 
+      restrict_permission
     end
   end
 
@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
     @product.merchant_id = @current_user.id
 
     if @product.save
-      redirect_to merchants_path
+      redirect_to all_products_path
     else
       render :new, status: :bad_request
     end
