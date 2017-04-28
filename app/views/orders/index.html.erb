@@ -1,22 +1,24 @@
 <h1>Order Fulfillment</h1>
 
+<h3 class="total"> Total revenue: $<%= @merchant.total_revenue%></h3>
+
 <nav>
   <h5> <%= link_to "Paid Orders", anchor: "paid" %>
     (<%= @merchant_orders["paid"].count %>) |
-    Shipped Orders (<%= @merchant_orders["shipped"].count %>) |
-    Cancelled Orders (<%= @merchant_orders["cancelled"].count %>)
+    <%= link_to "Shipped Orders", anchor: "shipped" %>
+    (<%= @merchant_orders["shipped"].count %>) |
+    <%= link_to "Cancelled Orders", anchor: "cancelled" %>
+    (<%= @merchant_orders["cancelled"].count %>)
   </h5>
 </nav>
 
-<h3 class="total"> Total revenue: $<%= @merchant.total_revenue%></h3>
-
 <% @merchant_orders.each do |status, orders| %>
-  <section class="row orders", id="paid">
+  <%= "<section class='row orders', id=#{status}".html_safe %>
   </svg>
     <h3><%= status.capitalize %> Orders</h3>
     <ul>
       <% orders.each do |order_id, ops| %>
-        <li>
+        <li class="order">
           <h5><%= link_to "Order ##{order_id}", order_path(order_id) %> ⏤
             <span class="smaller">
               <%= Order.find_by(id: order_id).created_at.strftime("%b %e, %Y") %>
