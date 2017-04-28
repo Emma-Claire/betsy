@@ -25,6 +25,7 @@ class MerchantsController < ApplicationController
 
   def show
     @merchant = Merchant.find_by(id: params[:id])
+    @products = @merchant.products.select { |product| !product.retired && product.inventory > 0 }
     if @merchant.nil?
       head :not_found
     end
