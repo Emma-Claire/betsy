@@ -26,11 +26,8 @@ nav {
   position: absolute;
   top: 30px;
   right: 30px;
-  /*margin-top: 23px;*/
-  /*margin-left: 268px;*/
-  /*margin-top: 50px;*/
-  /*margin-left: 20%;*/
 }
+
 #navbar {
   display: block;
   /*margin: 0 auto;*/
@@ -162,5 +159,9 @@ a:hover {
 }
 
 .button {
-  box-shadow: 5px 5px 5px #888888;
+  box-shadow: 3px 3px 3px #888888;
+}
+
+.footer-links a.button {
+  padding-right: 20px;
 }
