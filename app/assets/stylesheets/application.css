@@ -14,9 +14,7 @@
 *= require_self
 *= require foundation_and_overrides
 */
-a:hover {
-  box-shadow: 1px 1px 1px #888888
-}
+
 nav {
   z-index: 2;
   position: relative;
