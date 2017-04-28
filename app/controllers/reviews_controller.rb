@@ -4,10 +4,10 @@ class ReviewsController < ApplicationController
     @review = Review.new
     @product = Product.find(params[:product_id])
     if lookup_user.id == @product.merchant_id
-      flash.now[:status] = :failure
-      flash.now[:result_text] = "You cannot review your own product"
-    
-     render :new, status: :bad_request
+      flash[:status] = :failure
+      flash[:result_text] = "You cannot review your own product"
+
+     redirect_to product_path(@product.id)
 
     end
   end
