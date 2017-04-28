@@ -7,13 +7,18 @@
     <%= field %>:
     <%= problem %>
   </li>
-    <% end %>
+  <% end %>
   <% end %>
 </ul>
 <% end %>
 
 <section class= 'form'>
-<%= form_for @product do |f| %>
+  <%= form_for @product do |f| %>
+  
+  <% if lookup_user %>
+  <%= f.hidden_field :merchant_id, value: lookup_user.id %>
+  <% end %>
+
   <%= f.label :name %>
   <%= f.text_field :name %>
 
@@ -32,8 +37,6 @@
   <%= f.label :photo_url %>
   <%= f.text_field :photo_url %>
 
-<%= f.hidden_field :merchant_id, value: :merchant_id %>
-
   <%= f.submit %>
-<% end %>
+  <% end %>
 </section>
