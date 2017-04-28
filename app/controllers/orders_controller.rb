@@ -1,4 +1,4 @@
-require 'ap'
+# require 'ap'
 class OrdersController < ApplicationController
   before_action :place_order?, only: [:edit, :update]
 
