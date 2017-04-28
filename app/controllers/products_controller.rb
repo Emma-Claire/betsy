@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
     # @product.retired = false
 
     if @product.save
-      redirect_to products_path
+      redirect_to merchants_path
     else
       render :new, status: :bad_request
     end
