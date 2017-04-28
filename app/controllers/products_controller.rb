@@ -59,7 +59,7 @@ class ProductsController < ApplicationController
         @product.retired = true
         if @product.save
           flash[:result_text] = "Successfully retired product"
-          redirect_to merchant_path(@product.merchant.id)
+          redirect_to all_products_path
         else
           flash[:status] = :failure
           flash[:result_text] = "You could not retire this product"

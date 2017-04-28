@@ -62,6 +62,13 @@ class MerchantsController < ApplicationController
     redirect_to products_path
   end
 
+  def all_products
+    lookup_user
+    @merchant = Merchant.find_by(id: @current_user.id)
+    puts ">>>>>>>>>>>>>>>>>> @merchant"
+    render :all_products
+  end
+
   private
 
   def merchant_params

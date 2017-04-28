@@ -1,0 +1,25 @@
+<h1> <%= @merchant.username.capitalize %>'s Products </h1>
+
+<h3><%= link_to "Add Product", new_product_path, class: "button" %></h3>
+
+<section class="row">
+  <% @merchant.products.each do |product| %>
+  <div class="large-2 columns">
+    <ul>
+      <li class="shop">
+        <p><%= link_to "#{product.name}", product_path(product.id) %></p>
+        <p class="home_image"><%= image_tag product.photo_url %></p>
+        <p>Inventory: <%= product.inventory%></p>
+            <p><%= link_to "Edit", edit_product_path(product.id), class: "button" %></p>
+            <p>
+              <% if !product.retired %>
+                <%= link_to "Retire", product_path(product.id),
+                method: :delete, class: "button",
+                data: { confirm: "Are you sure you want to retire this product?" }%>
+              <% end %>
+          </p>
+        </li>
+      </ul>
+  </div>
+<% end %>
+</section>
