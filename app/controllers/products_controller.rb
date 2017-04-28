@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :require_login, except: [:index, :show]
+  before_action :require_login, except: [:index, :show, :index_9]
 
   def index
     @category = params[:category]
