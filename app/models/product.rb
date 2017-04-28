@@ -17,14 +17,12 @@ class Product < ApplicationRecord
 
   after_initialize :set_defaults, unless: :persisted?
 
-  # def self.by_category(category)
-  #   category = category.singularize.downcase
-  #   self.where(category: category)
-  # end
-
-  # def self.in_stock?(id, quantity)
-  #   Product.find(id).inventory >= quantity
-  # end
+  # Returns all active, in stock products
+  # If given a category, filters products by category
+  def self.in_stock(category=nil)
+    products = category ? Product.where(category: category) : Product.all
+    products.select { |product| !product.retired && product.inventory > 0 }
+  end
 
   def avg_rating
     ratings = reviews.map { | review | review.rating }

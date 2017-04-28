@@ -36,15 +36,15 @@ class OrderedproductsController < ApplicationController
     redirect_to orderedproducts_path
   end
 
-  def edit
-    find_order
-
-    @op = Orderedproduct.find_by(id: params[:id], order_id: @order.id)
-
-    if @op.nil?
-      head :not_found
-    end
-  end
+  # def edit
+  #   find_order
+  #
+  #   @op = Orderedproduct.find_by(id: params[:id], order_id: @order.id)
+  #
+  #   if @op.nil?
+  #     head :not_found
+  #   end
+  # end
 
   def update
     find_order
@@ -54,7 +54,7 @@ class OrderedproductsController < ApplicationController
     # if !@op.check_inventory
     #   flash[:failure] = "You may only add up to #{@op.product.inventory} of this item to your cart"
     if @op.save
-      flash[:success] = "Successfully updated item"
+      flash[:result_text] = "Successfully updated item quantity"
       redirect_to orderedproducts_path
     else
       flash[:failure] = "Unable to add item to cart"
@@ -70,7 +70,7 @@ class OrderedproductsController < ApplicationController
     if ops.empty?
       head :not_found
     else
-      flash[:success] = "Successfully deleted #{Product.find_by(id: ops.first.product_id).name} from cart"
+      flash[:result_text] = "Successfully deleted #{Product.find_by(id: ops.first.product_id).name} from cart"
       ops.destroy_all
       redirect_to orderedproducts_path
     end

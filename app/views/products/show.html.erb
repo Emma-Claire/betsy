@@ -4,21 +4,44 @@
 <section class="large-6 columns">
 <h1><%= @product.name %></h1>
 <h3>$<%= @product.price %></h3>
-<p><%= @product.reviews.empty? ? "⏤" : @product.avg_rating %> |
-  <%= link_to "#{@product.reviews.count} Reviews", product_path(@product) %>
+<p><%= render partial: "reviews/stars", locals: { stars: @product.avg_rating.to_f.round } %> |
+  <%= link_to "#{@product.reviews.count} Reviews", anchor: "reviews" %>
 </p>
 <p>Merchant: <%= link_to @product.merchant.username, merchant_path(@product.merchant.id) %></p>
 <p><%= @product.description %></p>
 
-<%= link_to "Add to cart", add_orderedproduct_path(@product), class: "button cart_button", method: :post %>
+<%= link_to "Add to cart", orderedproduct_path(@product), class: "button cart_button", method: :post %>
 </section>
 </div>
 
+<section id="reviews">
+  <h4 class="row large-12 columns reviews-header">Reviews</h4>
+  <header class="row">
+    <p class="large-3 columns" id="avg-rating">
+      <%= render partial: "reviews/stars", locals: { stars: @product.avg_rating.to_f.round } %>
+      (<%= @product.reviews.empty? ? "No reviews" : @product.avg_rating %>)
+    </p>
+    <%= link_to "Leave a review", new_product_review_path(@product),
+      class: "large-4 columns button secondary" %>
+  </header>
 
-<section>
-  <h5 class="row large-12 columns">Reviews</h5>
-  <div class="row">
-    <p class="large-2 columns"> No Reviews Yet </p>
-    <%= link_to "Leave a review", new_product_review_path(@product), class: "large-4 columns button secondary" %>
-  </div>
-</section>
+<% if !@product.reviews.empty? %>
+  <section>
+    <table class="reviews-table">
+      <thead>
+        <th>Rating</th>
+        <th>Date</th>
+        <th>Comment</th>
+      </thead>
+      <tbody>
+        <% @product.reviews.each do |review| %>
+          <tr>
+            <td><%= render partial: "reviews/stars", locals: { stars: review.rating } %></td>
+            <td><%= review.created_at.strftime("%b %e, %Y") %></td>
+            <td><%= review.comment  %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+<% end %>

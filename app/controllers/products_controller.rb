@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
 
   def index
     @category = params[:category]
-    @products = @category ? Product.where(category: @category) : Product.all
+    @products = Product.in_stock(@category)
   end
 
   def show
@@ -58,10 +58,11 @@ class ProductsController < ApplicationController
       else
         @product.retired = true
         if @product.save
-          redirect_to product_path(@product.id)
+          flash[:result_text] = "Successfully retired product"
+          redirect_to merchant_path(@product.merchant.id)
         else
-          flash.now[:status] = :failure
-          flash.now[:result_text] = "You could not retire this product"
+          flash[:status] = :failure
+          flash[:result_text] = "You could not retire this product"
         end
       end
   end
