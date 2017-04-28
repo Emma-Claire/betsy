@@ -28,8 +28,13 @@ class ProductsController < ApplicationController
     @product.merchant_id = @current_user.id
 
     if @product.save
+      flash[:status] = :success
+      flash[:result_text] = "Your product has been added"
       redirect_to all_products_path
     else
+      flash[:status] = :failure
+      flash.now[:result_text] = "Unable to add that product."
+      flash.now[:messages] = @product.errors.messages
       render :new, status: :bad_request
     end
   end
