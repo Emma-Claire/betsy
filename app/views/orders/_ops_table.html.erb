@@ -1,6 +1,6 @@
 <section>
   <table>
-    <% if headers == true %>
+    <% if headers %>
       <thead>
         <th>Product</th>
         <th>Unit Price</th>
@@ -19,7 +19,12 @@
           <td>$<%= op.subtotal %></td>
         </tr>
       <% end %>
-      <tr><td></td><td></td><td></td><td class="total">Total: </td><td class="total"><%= "$#{ops.first.order.total}" %></td></tr>
+      <tr>
+        <td></td><td></td><td></td><td class="total">Total: </td>
+        <td class="total">$
+          <% merchant_id = nil if headers %><%= ops.first.order.total(merchant_id) %>
+        </td>
+      </tr>
     </tbody>
   </table>
 </section>

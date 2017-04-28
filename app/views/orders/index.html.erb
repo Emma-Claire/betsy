@@ -15,7 +15,7 @@
           <h5><%= link_to "Order ##{order_id}", order_path(order_id) %></h5>
           <p><%="Placed on #{Order.find_by(id: order_id).created_at.strftime("%b %e, %Y")}"%></p>
 
-          <%= render partial: "ops_table", locals: { headers: false, ops: ops } %>
+          <%= render partial: "ops_table", locals: { headers: false, ops: ops, merchant_id: @merchant.id } %>
 
           <% if status == "paid" %>
             <%= link_to "Ship", merchant_ship_order_path(@merchant.id, order_id), method: :patch, class: "button" %>

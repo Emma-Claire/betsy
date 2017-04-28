@@ -42,7 +42,7 @@ class Order < ApplicationRecord
 
   # Updates status of merchant's products in a single order as shipped
   def mark_ops_shipped(merchant_id)
-    ops = orderedproducts.select{ |op| op.product.merchant.id == merchant_id }
+    ops = find_merchant_ops(merchant_id)
     ops.each do |op|
       op.shipped = true
       return false if !op.save
@@ -58,11 +58,13 @@ class Order < ApplicationRecord
     return true
   end
 
-  def total
-    t = 0
-    orderedproducts.each do |op|
-      t += (op.product.price * op.quantity)
-    end
-    return t.round(2)
+  # Find an order's orderedproducts for a given merchant
+  def find_merchant_ops(merchant_id)
+    orderedproducts.select{ |op| op.product.merchant.id == merchant_id }
+  end
+
+  def total(merchant_id=nil)
+    ops = merchant_id.nil? ? orderedproducts : find_merchant_ops(merchant_id)
+    '%.2f' % (ops.map { |op| op.subtotal.to_f }.sum)
   end
 end
