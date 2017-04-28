@@ -1,10 +1,13 @@
 class ReviewsController < ApplicationController
+
   def new
-    #check products params
-    # # if #current user and product.merchant_id == current user id
-    #   redirect_to product_path(@product.id)
-    # else
     @review = Review.new
+    @product = Product.find(params[:product_id])
+    if lookup_user.id == @product.merchant_id
+      flash.now[:status] = :failure
+      flash.now[:result_text] = "You cannot review your own product"
+      render :product_path, status: :bad_request
+    end
   end
 
   def create
