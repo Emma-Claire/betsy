@@ -5,3 +5,31 @@
 a.cart_button {
   width: 100%;
 }
+
+.reviews-header {
+  border-bottom: 2px solid black;
+}
+
+#reviews {
+  margin-top: 50px;
+}
+
+.light-stars {
+  color: lightgray;
+}
+
+#reviews p, #reviews a{
+  margin: 0;
+}
+
+.smaller {
+  font-size: 0.7em;
+}
+
+// #reviews, .reviews-header {
+//   display: inline-block;
+// }
+
+// a.reviews-header-button {
+//   text-align: right;
+// }
