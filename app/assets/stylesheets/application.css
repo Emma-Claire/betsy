@@ -14,12 +14,15 @@
 *= require_self
 *= require foundation_and_overrides
 */
-
+a:hover {
+  box-shadow: 1px 1px 1px #888888
+}
 nav {
   z-index: 2;
   position: relative;
   clear: both;
   background-color: lightgray;
+  /*box-shadow: 5px 5px 5px black;*/
 }
 .cart{
   position: absolute;
@@ -134,6 +137,11 @@ footer{
 #navbar a {
   padding: 0 1%;
   font-size: 1.25em;
+
+}
+
+#navbar span:hover {
+  box-shadow: 2px 2px 2px #888888;
 }
 
 a:hover {
