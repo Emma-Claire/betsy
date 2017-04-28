@@ -1,9 +1,10 @@
+require 'ap'
 class OrdersController < ApplicationController
   before_action :place_order?, only: [:edit, :update]
 
   def index
-    merchant = Merchant.find_by(id: params[:merchant_id])
-    @merchant_orders = merchant.build_orders_hash
+    @merchant = Merchant.find_by(id: params[:merchant_id])
+    @merchant_orders = @merchant.build_orders_hash
   end
 
   def show
@@ -50,7 +51,14 @@ class OrdersController < ApplicationController
 
   def ship
     @order = Order.find_by(id: params[:id])
-    @order.status = "shipped"
+    @ops = @order.orderedproducts.select{ |op| op.product.merchant.id == params[:merchant_id].to_i }
+    @ops.each do |op|
+      op.shipped = true
+      op.save
+    end
+    # check if need to save order status too
+
+    # @order.status = "shipped"
     if @order.save
       flash[:status] = :success
       flash[:result_text] = "Order successfully marked as shipped."
@@ -58,7 +66,7 @@ class OrdersController < ApplicationController
       flash[:status] = :failure
       flash[:result_text] = "Unable to ship order at this time"
     end
-    redirect_to
+    redirect_to merchant_orders_path(params[:merchant_id])
   end
 
 private
