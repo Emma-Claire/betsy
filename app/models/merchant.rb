@@ -63,4 +63,9 @@ class Merchant < ApplicationRecord
     end
     return orders_hash
   end
+
+  def total_revenue
+    ops = orderedproducts.select { |op| op.order.status != "cancelled" }
+    '%.2f' % (ops.map { |op| op.subtotal.to_f }.sum)
+  end
 end
