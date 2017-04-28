@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     if @current_user.nil?
       flash[:status] = :failure
       flash[:result_text] = 'You must be logged in to see that page.'
-      redirect_to merchants_path
+      redirect_to products_path
     end
   end
 
