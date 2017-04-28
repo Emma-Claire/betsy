@@ -1,7 +1,6 @@
 
 <h2>Your Current Order</h2>
 
-
 <%= render partial: "ops_table", locals: { headers: true, ops: @order.orderedproducts } %>
 <%= link_to "Return to Cart", orderedproducts_path, class: "button" %>
 

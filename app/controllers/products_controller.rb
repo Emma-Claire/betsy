@@ -6,6 +6,11 @@ class ProductsController < ApplicationController
     @products = Product.in_stock(@category)
   end
 
+  def index_9
+    @category = params[:category]
+    @products = Product.in_stock(@category).first(9)
+  end
+
   def show
     @product = Product.find_by(id: params[:id])
     lookup_user

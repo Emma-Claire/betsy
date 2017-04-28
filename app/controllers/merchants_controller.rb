@@ -5,10 +5,6 @@ class MerchantsController < ApplicationController
     @merchants = Merchant.all
   end
 
-  def new
-    @merchant = Merchant.new
-  end
-
   def create
     @merchant = Merchant.new(merchant_params)
     if @merchant.save

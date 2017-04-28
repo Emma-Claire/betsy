@@ -26,52 +26,20 @@ nav {
   position: relative;
   clear: both;
   background-color: lightgray;
-  /*box-shadow: 5px 5px 5px black;*/
 }
 .cart{
   position: absolute;
   top: 30px;
   right: 30px;
-  /*margin-top: 23px;*/
-  /*margin-left: 268px;*/
-  /*margin-top: 50px;*/
-  /*margin-left: 20%;*/
 }
+
 #navbar {
   display: block;
-  /*margin: 0 auto;*/
-  /*padding: 0;*/
-  /*list-style: none;*/
-  /*width: 1100px;
-  height: 57px;*/
   font-size: 15px;
   font-weight: bold;
   vertical-align: middle;
   text-align: center;
 }
-
-/*#navbar li {
-  float: left;
-  position: relative;
-  background: url(../images/bullet.png) no-repeat 0 25px;
-  z-index: 1;
-  width: 120px;
-  margin: 1px;
-}
-
-#navbar h3 {
-  height: 47px;
-  padding: 10px 25px 0 25px;
-  color: #393f14;
-  font-weight: 800;
-  font-size: 15px;
-  line-height: 17px;
-  text-decoration: none;
-  display: block;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}*/
 
 .categories {
   border-bottom: 2px solid lightgray;
@@ -88,8 +56,6 @@ ul {
 
 .shop {
   display: inline-block;
-  /*border: 2px solid lightgray;*/
-  /*background: rgba(76, 175, 80, 0.1);*/
   box-shadow: 5px 5px 5px #888888;
   border-radius: 20px;
   height: 325px;
@@ -99,7 +65,6 @@ ul {
   text-align: center;
   padding-top: 10%;
   background-color: rgba(76, 175, 80, 0.1);
-
 }
 
 .shop h6 {
@@ -138,8 +103,6 @@ ul {
 td img {
   width: auto;
   height: 25%;
-  /*display: block;*/
-  /*margin: 0 auto;*/
   margin-top: 18px;
 }
 
@@ -156,7 +119,6 @@ footer{
 #navbar a {
   padding: 0 1%;
   font-size: 1.25em;
-
 }
 
 a:hover {
@@ -168,5 +130,9 @@ a:hover {
 }
 
 .button {
-  box-shadow: 5px 5px 5px #888888;
+  box-shadow: 3px 3px 3px #888888;
+}
+
+.footer-links a.button {
+  padding-right: 20px;
 }

@@ -1,0 +1,14 @@
+<h2>FEATURED PLANTS</h2>
+<section class="row">
+  <% @products.each do |product| %>
+  <div class="large-4 columns">
+    <ul>
+      <li class="shop">
+      <h6><%= link_to product.name, product_path(product.id) %></h6>
+      <p class="home_image"><%=  image_tag product.photo_url %></p>
+      <p id="price">$<%= product.price %> each</p>
+    </li>
+  </ul>
+  </div>
+  <% end %>
+</section>

@@ -4,9 +4,6 @@ class Orderedproduct < ApplicationRecord
 
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
-#need to wrote code to keep user from putting more items in cart than are in inventory
-  # validates :quantity, numericality: { only_integer: true, greater_than: 0, less_than: (Product.find(:id product_id).inventory }, on: :update
-
   validate :cannot_put_more_items_in_cart_than_are_available_in_inventory, on: :update
 
   after_initialize :set_defaults, unless: :persisted?
@@ -21,8 +18,6 @@ class Orderedproduct < ApplicationRecord
   def subtotal
     '%.2f' % (product.price * quantity)
   end
-
-  # assume only called on an array?
 
   private
   def set_defaults
