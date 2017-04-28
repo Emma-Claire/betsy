@@ -1,11 +1,12 @@
-<h3>Plantsy Shops</h3>
+<h3>PLANTSY SHOPS</h3>
 
 <section class="row">
   <% @merchants.each do |merchant| %>
     <div class="large-4 columns">
       <ul>
         <% if merchant.products.first != nil %>
-        <li class="shop"> <%= link_to merchant.username, merchant_path(merchant.id) %>'s Plantsy Shop
+        <li class="shop">
+          <h6><%= link_to merchant.username, merchant_path(merchant.id) %>'s Plantsy Shop<h6>
           <p class="home_image"><%= image_tag merchant.products.first.photo_url %></p>
         <% end %>
         </li>

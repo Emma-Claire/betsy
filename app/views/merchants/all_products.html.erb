@@ -4,20 +4,20 @@
 
 <section class="row">
   <% @merchant.products.each do |product| %>
-  <div class="large-2 columns">
+  <div class="large-4 columns">
     <ul>
       <li class="shop">
-        <p><%= link_to "#{product.name}", product_path(product.id) %></p>
+        <h6><%= link_to "#{product.name}", product_path(product.id) %></h6>
         <p class="home_image"><%= image_tag product.photo_url %></p>
         <p>Inventory: <%= product.inventory%></p>
-            <p><%= link_to "Edit", edit_product_path(product.id), class: "button" %></p>
-            <p>
+            <%= link_to "Edit", edit_product_path(product.id), class: "button" %>
+
               <% if !product.retired %>
                 <%= link_to "Retire", product_path(product.id),
                 method: :delete, class: "button",
                 data: { confirm: "Are you sure you want to retire this product?" }%>
               <% end %>
-          </p>
+          
         </li>
       </ul>
   </div>

@@ -8,6 +8,13 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find_by(id: params[:id])
+    lookup_user
+
+    if !@current_user.nil? && @product.merchant.id == @current_user.id
+      render :show
+    elsif @product.retired || @product.inventory < 1
+      restrict_permission
+    end
   end
 
   def new
@@ -19,11 +26,15 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     lookup_user
     @product.merchant_id = @current_user.id
-    # @product.retired = false
 
     if @product.save
-      redirect_to merchants_path
+      flash[:status] = :success
+      flash[:result_text] = "Your product has been added"
+      redirect_to all_products_path
     else
+      flash[:status] = :failure
+      flash.now[:result_text] = "Unable to add that product."
+      flash.now[:messages] = @product.errors.messages
       render :new, status: :bad_request
     end
   end
@@ -43,8 +54,13 @@ class ProductsController < ApplicationController
     else
       @product.update_attributes(product_params)
       if @product.save
+        flash[:status] = :success
+        flash[:result_text] = "Your product has been updated"
         redirect_to all_products_path
       else
+        flash[:status] = :failure
+        flash.now[:result_text] = "Unable to update that product."
+        flash.now[:messages] = @product.errors.messages
         render :edit, status: :bad_request
       end
     end

@@ -19,4 +19,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def restrict_permission
+    flash[:status] = :failure
+    flash[:result_text] = 'You do not have permission to view that page'
+    redirect_to products_path
+  end
 end

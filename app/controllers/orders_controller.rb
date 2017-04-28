@@ -86,10 +86,10 @@ private
       redirect_to orderedproducts_path
     end
   end
-
-  def restrict_permission
-    flash[:status] = :failure
-    flash[:result_text] = 'You do not have permission to view that page'
-    redirect_to products_path
-  end
+  # 
+  # def restrict_permission
+  #   flash[:status] = :failure
+  #   flash[:result_text] = 'You do not have permission to view that page'
+  #   redirect_to products_path
+  # end
 end
