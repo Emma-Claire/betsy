@@ -14,10 +14,12 @@
 *= require_self
 *= require foundation_and_overrides
 */
+
 nav {
   z-index: 2;
   position: relative;
   clear: both;
+  background-color: lightgray;
 }
 .cart{
   position: absolute;
@@ -77,7 +79,7 @@ ul {
 .shop {
   display: inline-block;
   /*border: 2px solid lightgray;*/
-  background: rgba(76, 175, 80, 0.1);
+  /*background: rgba(76, 175, 80, 0.1);*/
   box-shadow: 5px 5px 5px #888888;
   border-radius: 20px;
   height: 300px;
@@ -86,7 +88,7 @@ ul {
   margin-left: 9%;
   text-align: center;
   padding-top: 10%;
-  background-color: orange;
+  background-color: rgba(76, 175, 80, 0.1);
 }
 
 .item {
@@ -140,4 +142,8 @@ a:hover {
 
 .italicized {
   font-style: italic;
+}
+
+.button {
+  box-shadow: 5px 5px 5px #888888;
 }
