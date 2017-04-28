@@ -1,12 +1,40 @@
 
 pending:
   status: pending
+  email: string
+  mailing_address: string
+  name_on_cc: string
+  cc_num: 7171
+  cc_exp: 7171
+  cc_csv: 818
+  zip_code: 81818
 
 paid:
   status: paid
+  email: string
+  mailing_address: string
+  name_on_cc: string
+  cc_num: 7171
+  cc_exp: 7171
+  cc_csv: 818
+  zip_code: 81818
 
 shipped:
   status: shipped
+  email: string
+  mailing_address: string
+  name_on_cc: string
+  cc_num: 7171
+  cc_exp: 7171
+  cc_csv: 818
+  zip_code: 81818
 
 cancelled:
   status: cancelled
+  email: string
+  mailing_address: string
+  name_on_cc: string
+  cc_num: 7171
+  cc_exp: 7171
+  cc_csv: 818
+  zip_code: 81818

@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
     @product.merchant_id = @current_user.id
 
     if @product.save
-      redirect_to all_products_path
+      redirect_to merchants_path
     else
       render :new, status: :bad_request
     end

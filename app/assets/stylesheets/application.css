@@ -71,6 +71,9 @@ nav {
   border-bottom: 2px solid lightgray;
   margin-bottom: 25px;
 }
+h6{
+  font-weight: bold;
+}
 
 ul {
   list-style-type: none;
@@ -90,6 +93,11 @@ ul {
   text-align: center;
   padding-top: 10%;
   background-color: rgba(76, 175, 80, 0.1);
+
+}
+
+.shop h6 {
+  font-weight: bold;
 }
 
 .item {

@@ -1,8 +1,6 @@
 require "test_helper"
 
 describe ProductsController do
-
-
   CATEGORIES = %w(air tropical succulents cacti herbs trees planters)
   INVALID_CATEGORIES = ["nope", "42", "", "  ", "Succulentstrailingtext"]
 
@@ -49,29 +47,28 @@ describe ProductsController do
         }
       }
       post products_path, params: product_data
-      must_redirect_to products_path
+      must_redirect_to merchants_path
     end
 
-    it "re-renders the new product form if the product is invalid" do
-      product_data = {
-        product: {
-          name: "Orchid",
-          price: 25.99,
-          category: "Exotic"
-        }
-      }
-      post products_path, params: product_data
-      must_respond_with :bad_request
-    end
+    # it "re-renders the new product form if the product is invalid" do
+    #   product_data = {
+    #     product: {
+    #       name: "Orchid",
+    #       price: 25.99,
+    #       category: "Exotic"
+    #     }
+    #   }
+    #   post products_path, params: product_data
+    #   must_respond_with :bad_request
+    # end
   end
 
-  describe "new" do
-    it "should get new" do
-      get new_product_path
-      value(response).must_be :success?
-    end
+  # describe "new" do
+  #   it "should get new" do
+  #     get new_product_path
+  #     value(response).must_be :success?
+  #   end
 
-  end
 
   describe "edit" do
     it "succeeds for an existent product ID" do
