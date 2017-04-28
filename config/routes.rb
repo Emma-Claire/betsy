@@ -11,7 +11,10 @@ category_constraints = {
   get 'merchants/:id', to: 'merchants#show', as: 'merchant'
 
   resources :merchants, except: [:destroy, :edit, :update] do
-    resources :orders, only: [:index]
+    get 'orders', to: 'orders#index' #, as: 'merchant_orders' #merchants/:merchant_id/
+    patch 'orders/:id/ship', to: 'orders#ship', as: 'ship_order'
+
+    # resources :orders, only: [:index, :ship]
   end
 
   get 'products(/:category)', to: 'products#index', as: 'products', constraints: category_constraints
@@ -35,8 +38,8 @@ category_constraints = {
   get 'orders/:id/edit', to: 'orders#edit', as: 'edit_order'
   post 'orders/:id/edit', to: 'orders#edit'
   patch 'orders/:id', to: 'orders#update'
-  patch 'orders/:id/cancelled', to: 'orders#cancel_order', as: 'cancel_order'
-  patch 'orders/:id/shipped', to: 'orders#ship', as: 'ship_order'
+  patch 'orders/:id/cancelled', to: 'orders#cancel_order', as: 'cancel'
+  # patch 'orders/:id/shipped', to: 'orders#ship', as: 'ship_order'
 
   # orderedproduct routes
   get 'orderedproducts', to: 'orderedproducts#index', as: 'orderedproducts'

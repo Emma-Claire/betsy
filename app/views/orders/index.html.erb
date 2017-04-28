@@ -18,7 +18,7 @@
           <%= render partial: "ops_table", locals: { headers: false, ops: ops } %>
 
           <% if status == "paid" %>
-            <%= link_to "Ship", ship_order_path(order_id), method: :patch, class: "button" %>
+            <%= link_to "Ship", merchant_ship_order_path(@merchant.id, order_id), method: :patch, class: "button" %>
           <% end %>
         </li>
       <% end %>

@@ -4,4 +4,4 @@
 
 <%= render partial: "billing_info", locals: { order: @order } %>
 
-<p> Feeling Buyer's Remorse? </p><%= link_to "Cancel Order", cancel_order_path, method: :patch, data: {confirm: "Are you sure you want to cancel this item?"}, class: "button alert" %>
+<p> Feeling Buyer's Remorse? </p><%= link_to "Cancel Order", cancel_path(@order), method: :patch, data: {confirm: "Are you sure you want to cancel this item?"}, class: "button alert" %>
