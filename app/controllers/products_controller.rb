@@ -10,7 +10,8 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @product = Product.new
+    @product = Product.new()
+    @merchant_id = session[:user_id]
   end
 
   def create
@@ -57,7 +58,8 @@ class ProductsController < ApplicationController
         if @product.save
           redirect_to product_path(@product.id)
         else
-          flash[:message] = "You could not retire this product"
+          flash.now[:status] = :failure
+          flash.now[:result_text] = "You could not retire this product"
         end
       end
   end

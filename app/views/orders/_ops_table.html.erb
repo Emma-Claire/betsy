@@ -3,6 +3,7 @@
     <% if headers %>
       <thead>
         <th>Product</th>
+        <th></th>
         <th>Unit Price</th>
         <th></th>
         <th>Quantity</th>
@@ -12,10 +13,8 @@
     <tbody>
       <% ops.each do |op| %>
         <tr>
-          <td>
-            <%= link_to op.product.name, product_path(op.product) %>
-            <%= image_tag op.product.photo_url, class: "product-image" %>
-          </td>
+          <td><%= link_to op.product.name, product_path(op.product) %></td>
+          <td><%= image_tag op.product.photo_url, class: "product-image" %></td>
           <td>$<%= '%.2f' % (op.product.price)  %></td>
           <td><%= "x" %></td>
           <td><%= op.quantity %></td>
@@ -23,9 +22,9 @@
         </tr>
       <% end %>
       <tr>
-        <td></td><td></td><td></td><td class="total">Total: </td>
-        <td class="total">$
-          <% merchant_id = nil if headers %><%= ops.first.order.total(merchant_id) %>
+        <td></td><td></td><td></td><td></td><td class="total">Total: </td>
+        <td class="total">
+          <% merchant_id = nil if headers %>$<%= ops.first.order.total(merchant_id) %>
         </td>
       </tr>
     </tbody>
