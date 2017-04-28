@@ -15,6 +15,12 @@
 *= require foundation_and_overrides
 */
 
+@import url('https://fonts.googleapis.com/css?family=Cuprum');
+
+* {
+  font-family: 'Cuprum', sans-serif;
+}
+
 nav {
   z-index: 2;
   position: relative;
