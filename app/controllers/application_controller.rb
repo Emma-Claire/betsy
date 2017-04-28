@@ -13,7 +13,8 @@ class ApplicationController < ActionController::Base
   def require_login
     lookup_user
     if @current_user.nil?
-      flash[:message] = 'You must be logged in to see this.'
+      flash[:status] = :failure
+      flash[:result_text] = 'You must be logged in to see that page.'
       redirect_to products_path
     end
   end

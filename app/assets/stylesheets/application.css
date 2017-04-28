@@ -75,6 +75,22 @@ ul {
   padding-top: 10%;
 }
 
+.item {
+  display: inline;
+  border: 2px solid lightgray;
+  border-radius: 20px;
+  height: 400px;
+  width: 400px;
+  margin: 10%;
+  text-align: center;
+  padding-top: 10%;
+}
+
+.item img {
+  width: auto;
+  height: 200px;
+}
+
 .home_image {
   width: 45%;
   height: auto;

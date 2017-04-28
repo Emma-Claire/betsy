@@ -26,9 +26,12 @@ class OrderedproductsController < ApplicationController
       op = Orderedproduct.new(product_id: params[:product_id], order_id: @order.id, quantity: 1)
     end
     if op.save #may change this
-      flash[:success] = "Successfully added #{Product.find_by(id: op.product_id).name} to cart"
+      flash[:status] = :success
+      flash[:result_text] = "Successfully added #{Product.find_by(id: op.product_id).name} to cart"
     else
-      flash[:failure] = "Unable to add #{Product.find_by(id: op.product_id).name} to cart"
+      flash[:status] = :failure
+      flash[:result_text] = "Unable to add #{Product.find_by(id: op.product_id).name} to cart"
+      flash[:messages] = @product.errors.messages
     end
     redirect_to orderedproducts_path
   end
