@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :require_login, except: [:index, :show]
 
   def index
     @category = params[:category]
@@ -19,7 +20,6 @@ class ProductsController < ApplicationController
     lookup_user
     @product.merchant_id = @current_user.id
     # @product.retired = false
-
 
     if @product.save
       redirect_to products_path
@@ -60,7 +60,7 @@ class ProductsController < ApplicationController
         if @product.save
           flash[:status] = :success
           flash[:result_text] = "Successfully retired product"
-          redirect_to merchant_path(@product.merchant.id)
+          redirect_to all_products_path
         else
           flash[:status] = :failure
           flash[:result_text] = "You could not retire this product"

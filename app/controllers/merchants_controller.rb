@@ -25,6 +25,7 @@ class MerchantsController < ApplicationController
 
   def show
     @merchant = Merchant.find_by(id: params[:id])
+    @products = @merchant.products.select { |product| !product.retired && product.inventory > 0 }
     if @merchant.nil?
       head :not_found
     end
@@ -61,6 +62,13 @@ class MerchantsController < ApplicationController
     flash[:status] = :success
     flash[:result_text] = 'You are logged out'
     redirect_to products_path
+  end
+
+  def all_products
+    lookup_user
+    @merchant = Merchant.find_by(id: @current_user.id)
+    puts ">>>>>>>>>>>>>>>>>> @merchant"
+    render :all_products
   end
 
   private
