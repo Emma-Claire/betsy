@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
 
   def index
+    # product.retired || product.inventory = 0
     @category = params[:category]
     @products = @category ? Product.where(category: @category) : Product.all
   end
