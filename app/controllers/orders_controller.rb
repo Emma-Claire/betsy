@@ -46,19 +46,15 @@ class OrdersController < ApplicationController
   end
 
   def ship
-    @order = Order.find_by(id: params[:id])
-    @ops = @order.orderedproducts.select{ |op| op.product.merchant.id == params[:merchant_id].to_i }
-    @ops.each do |op|
-      op.shipped = true
-      op.save
-    end
-    # check if need to save order status too
+    order = Order.find_by(id: params[:id])
 
-    # @order.status = "shipped"
-    if @order.save
+    result = order.mark_ops_shipped(params[:merchant_id].to_i)
+    order.status = "shipped" if order.all_shipped?
+
+    if result && order.save
       flash[:message] = "Order successfully marked as shipped."
     else
-      flash[:message] = "Unable to ship order at this time"
+      flash[:message] = "Unable to ship order at this time."
     end
     redirect_to merchant_orders_path(params[:merchant_id])
   end

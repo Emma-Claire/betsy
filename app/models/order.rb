@@ -40,6 +40,24 @@ class Order < ApplicationRecord
     end
   end
 
+  # Updates status of merchant's products in a single order as shipped
+  def mark_ops_shipped(merchant_id)
+    ops = orderedproducts.select{ |op| op.product.merchant.id == merchant_id }
+    ops.each do |op|
+      op.shipped = true
+      return false if !op.save
+    end
+    return true
+  end
+
+  # Checks to see if all products in the order have been shipped
+  def all_shipped?
+    orderedproducts.each do |op|
+      return false if !op.shipped
+    end
+    return true
+  end
+
   def total
     t = 0
     orderedproducts.each do |op|
@@ -47,21 +65,4 @@ class Order < ApplicationRecord
     end
     return t.round(2)
   end
-
-
-
-    # def self.paid_for_merchant(merchant_id)
-    #   paid_orders = Order.where(status: "paid")
-    #   paid_orders.map { |order| order.products }
-    # end
-
-    # def self.for_merchant(merchant_id, status)
-    #   orders = Order.where(status: "paid")
-    #   orders.each do |order|
-    #     order.products.each do |product|
-    #       orders.delete(order) if product.merchant_id != merchant_id
-    #     end
-    #   end
-    # end
-
 end
