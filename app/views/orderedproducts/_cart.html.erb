@@ -11,13 +11,13 @@
       <% ops.each do |op| %>
         <tr>
           <td><%= op.product.name %> <%= image_tag op.product.photo_url, class: "product-image" %></td>
-          <td>$<%= op.product.price %></td>
+          <td>$<%= '%.2f' % (op.product.price) %></td>
           <td><%= "x" %></td>
           <td><%= render partial: "quantity_form", locals: { op: op } %></td>
-          <td><%= link_to "Remove from Cart", orderedproduct_path(op), method: :delete, class: "button secondary" %></td>
+          <td><%= link_to "Remove", orderedproduct_path(op), method: :delete, class: "button alert" %></td>
         </tr>
       <% end %>
-      <tr><td></td><td></td><td></td><td class="total">Estimated Total: </td><td class="total"><%= "$#{ops.first.order.total}" %></td></tr>
+      <tr><td></td><td></td><td></td><td class="total">Total: </td><td class="total"><%= "$#{ops.first.order.total}" %></td></tr>
     </tbody>
   </table>
 </section>

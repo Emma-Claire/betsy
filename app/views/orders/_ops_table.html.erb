@@ -16,7 +16,7 @@
             <%= link_to op.product.name, product_path(op.product) %>
             <%= image_tag op.product.photo_url, class: "product-image" %>
           </td>
-          <td>$<%= op.product.price %></td>
+          <td>$<%= '%.2f' % (op.product.price)  %></td>
           <td><%= "x" %></td>
           <td><%= op.quantity %></td>
           <td>$<%= op.subtotal %></td>
