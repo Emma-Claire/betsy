@@ -122,6 +122,11 @@ ul {
   height: auto;
   display: block;
   margin: 0 auto;
+  margin-top: 18px;
+}
+
+#price {
+  margin-top: 10px;
 }
 
 td img {
