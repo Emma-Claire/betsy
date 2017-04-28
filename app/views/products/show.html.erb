@@ -14,35 +14,6 @@
 </section>
 </div>
 
-<!-- <header id="reviews">
-  <h4 class="reviews-header">Reviews</h4>
-  <p class="reviews-header">
-    <%= render partial: "reviews/stars", locals: { stars: @product.avg_rating.to_f.round } %>
-    (<%= @product.reviews.empty? ? "No reviews" : @product.avg_rating %>)
-  </p>
-    <%= link_to "Leave a review", new_product_review_path(@product),
-      class: "button secondary reviews-header-button " %>
-</header>
-
-  <% if !@product.reviews.empty? %>
-    <% @product.reviews.each do |review| %>
-      <div class= "row">
-        <p class="large-3 columns"><%= render partial: "reviews/stars", locals: { stars: review.rating } %></p>
-        <p class="large-9 columns"><%= review.comment%><%= review.created_at.strftime("%b %e, %Y") %></p>
-      </div>
-    <% end %>
-  <% end %>
-</section> -->
-
-<!-- <section id="reviews">
-  <h4 class="row large-12 columns reviews-header">Reviews
-      <span class="smaller"><%= render partial: "reviews/stars", locals: { stars: @product.avg_rating.to_f.round } %>
-      (<%= @product.reviews.empty? ? "No reviews" : @product.avg_rating %>)</span>
-    <%= link_to "Leave a review", new_product_review_path(@product),
-      class: "large-4 columns button secondary" %>
-  </h4>
-</section> -->
-
 <section id="reviews">
   <h4 class="row large-12 columns reviews-header">Reviews</h4>
   <header class="row">
@@ -54,27 +25,23 @@
       class: "large-4 columns button secondary" %>
   </header>
 
-  <!-- <div class="row"><%= link_to "Leave a review", new_product_review_path(@product),
-    class: "large-4 columns button secondary" %>
-  </div> -->
-
-  <% if !@product.reviews.empty? %>
-    <% @product.reviews.each do |review| %>
-      <div class= "row">
-        <p class="large-3 columns"><%= render partial: "reviews/stars", locals: { stars: review.rating } %></p>
-        <p class="large-9 columns"><%= review.comment%><%= review.created_at.strftime("%b %e, %Y") %></p>
-      </div>
-    <% end %>
-  <% end %>
-</section>
-
-
-<!-- <header class="row" id="reviews">
-  <h4 class="large-3 columns reviews-header">Reviews</h4>
-  <p class="large-3 columns reviews-header">
-    <%= render partial: "reviews/stars", locals: { stars: @product.avg_rating.to_f.round } %>
-    (<%= @product.reviews.empty? ? "No reviews" : @product.avg_rating %>)
-  </p>
-    <%= link_to "Leave a review", new_product_review_path(@product),
-      class: "large-3 columns button secondary reviews-header " %>
-</header> -->
+<% if !@product.reviews.empty? %>
+  <section>
+    <table class="reviews-table">
+      <thead>
+        <th>Rating</th>
+        <th>Date</th>
+        <th>Comment</th>
+      </thead>
+      <tbody>
+        <% @product.reviews.each do |review| %>
+          <tr>
+            <td><%= render partial: "reviews/stars", locals: { stars: review.rating } %></td>
+            <td><%= review.created_at.strftime("%b %e, %Y") %></td>
+            <td><%= review.comment  %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+<% end %>
