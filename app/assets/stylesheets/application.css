@@ -20,23 +20,28 @@ nav {
   clear: both;
 }
 .cart{
-  margin-top: 23px;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  /*margin-top: 23px;*/
   /*margin-left: 268px;*/
   /*margin-top: 50px;*/
-  margin-left: 20%;
+  /*margin-left: 20%;*/
 }
 #navbar {
   display: block;
-  margin: 0 auto;
-  padding: 0;
-  list-style: none;
-  width: 1100px;
-  height: 57px;
+  /*margin: 0 auto;*/
+  /*padding: 0;*/
+  /*list-style: none;*/
+  /*width: 1100px;
+  height: 57px;*/
   font-size: 15px;
   font-weight: bold;
+  vertical-align: middle;
+  text-align: center;
 }
 
-#navbar li {
+/*#navbar li {
   float: left;
   position: relative;
   background: url(../images/bullet.png) no-repeat 0 25px;
@@ -57,6 +62,11 @@ nav {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+}*/
+
+.categories {
+  border-bottom: 2px solid lightgray;
+  margin-bottom: 25px;
 }
 
 ul {
@@ -116,4 +126,13 @@ footer{
   width: 1446px;
   margin-bottom: 27px;
   background-color: lightgray;
+}
+
+#navbar a {
+  padding: 0 1%;
+  font-size: 1.25em;
+}
+
+a:hover {
+  color: black;
 }
