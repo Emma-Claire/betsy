@@ -47,21 +47,19 @@ class MerchantsController < ApplicationController
       else
         flash[:status] = :failure
         flash[:result_text] = "Could not log in"
-        user.errors.messages.each do |field, problem|
-          flash[:field] = problem.join(', ')
-        end
       end
     else
       session[:user_id] = user.id
       flash[:status] = :success
-      flash[:message] = "Welcome back, #{user.username}"
+      flash[:result_text] = "Welcome back, #{user.username}"
     end
     redirect_to products_path
   end
 
   def destroy
     session[:user_id] = nil
-    flash[:logout] = 'You logged out'
+    flash[:status] = :success
+    flash[:result_text] = 'You are logged out'
     redirect_to products_path
   end
 

@@ -54,10 +54,12 @@ class OrderedproductsController < ApplicationController
     # if !@op.check_inventory
     #   flash[:failure] = "You may only add up to #{@op.product.inventory} of this item to your cart"
     if @op.save
+      flash[:status] = :success
       flash[:result_text] = "Successfully updated item quantity"
       redirect_to orderedproducts_path
     else
-      flash[:failure] = "Unable to add item to cart"
+      flash[:status] = :failure
+      flash[:result_text] = "Unable to add item to cart"
       flash[:message] = @op.errors.messages
       redirect_to orderedproducts_path
       #, status: :not_found  #redirect
@@ -70,6 +72,7 @@ class OrderedproductsController < ApplicationController
     if ops.empty?
       head :not_found
     else
+      flash[:status] = :success
       flash[:result_text] = "Successfully deleted #{Product.find_by(id: ops.first.product_id).name} from cart"
       ops.destroy_all
       redirect_to orderedproducts_path
